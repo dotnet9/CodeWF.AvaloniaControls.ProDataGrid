@@ -1,0 +1,22 @@
+<Project>
+  <PropertyGroup>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+    <AvaloniaVersion>12.0.2</AvaloniaVersion>
+    <ReactiveUIAvaloniaVersion>12.0.1</ReactiveUIAvaloniaVersion>
+    <SemiAvaloniaVersion>12.0.1</SemiAvaloniaVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageVersion Include="Avalonia" Version="$(AvaloniaVersion)" />
+    <PackageVersion Include="Avalonia.Desktop" Version="$(AvaloniaVersion)" />
+    <PackageVersion Include="AvaloniaUI.DiagnosticsSupport" Version="2.2.1" />
+    <PackageVersion Include="Avalonia.Fonts.Inter" Version="$(AvaloniaVersion)" />
+    <PackageVersion Include="Prism.DryIoc.Avalonia" Version="8.1.97.11073" />
+    <PackageVersion Include="ProDataGrid" Version="12.0.0" />
+    <PackageVersion Include="ReactiveUI.Avalonia" Version="$(ReactiveUIAvaloniaVersion)" />
+    <PackageVersion Include="Semi.Avalonia" Version="$(SemiAvaloniaVersion)" />
+    <PackageVersion Include="Semi.Avalonia.ProDataGrid" Version="12.0.0" />
+    <PackageVersion Include="System.Drawing.Common" Version="10.0.6" />
+    <PackageVersion Include="VC-LTL" Version="5.3.1" />
+    <PackageVersion Include="YY-Thunks" Version="1.2.1-beta.7" />
+  </ItemGroup>
+</Project>
