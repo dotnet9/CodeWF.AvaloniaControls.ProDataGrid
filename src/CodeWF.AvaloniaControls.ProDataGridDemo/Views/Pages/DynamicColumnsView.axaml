@@ -45,7 +45,7 @@
                 <TextBlock FontSize="15" FontWeight="SemiBold" Text="动态列" />
                 <TextBlock Grid.Column="1"
                            Foreground="#5B6472"
-                           Text="演示运行时生成指标列并持续刷新数据。"
+                           Text="演示设备采集表在运行时增删行、增删列，并保持列宽拖拽和表头斜线同步。"
                            TextTrimming="CharacterEllipsis" />
             </Grid>
         </Border>
@@ -74,12 +74,12 @@
                                        HorizontalAlignment="Left"
                                        VerticalAlignment="Bottom"
                                        FontSize="12"
-                                       Text="状态" />
+                                       Text="设备" />
                             <TextBlock Margin="0,4,14,0"
                                        HorizontalAlignment="Right"
                                        VerticalAlignment="Top"
                                        FontSize="12"
-                                       Text="参数" />
+                                       Text="指标" />
                         </Grid>
                     </DataGridTemplateColumn.Header>
                     <DataGridTemplateColumn.CellTemplate>

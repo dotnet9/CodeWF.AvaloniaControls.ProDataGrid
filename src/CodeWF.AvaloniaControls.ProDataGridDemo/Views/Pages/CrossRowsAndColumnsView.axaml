@@ -28,12 +28,13 @@
             <Setter Property="VerticalAlignment" Value="Stretch" />
             <Setter Property="MinHeight" Value="40" />
             <Setter Property="ClipToBounds" Value="True" />
+            <Setter Property="IsHitTestVisible" Value="False" />
         </Style>
         <Style Selector="TextBlock.Header">
             <Setter Property="Foreground" Value="{StaticResource DataGridColumnHeaderForeground}" />
             <Setter Property="FontWeight" Value="SemiBold" />
             <Setter Property="VerticalAlignment" Value="Center" />
-            <Setter Property="Margin" Value="12 0 0 0" />
+            <Setter Property="Margin" Value="{DynamicResource DataGridCellTextBlockDefaultMargin}" />
         </Style>
         <Style Selector="TextBlock.Content">
             <Setter Property="VerticalAlignment" Value="Center" />
@@ -43,11 +44,11 @@
             <Setter Property="VerticalAlignment" Value="Center" />
             <Setter Property="HorizontalAlignment" Value="Center" />
         </Style>
-        <Style Selector="Border.HBorder">
-            <Setter Property="BorderBrush" Value="{StaticResource Colors.Border.BorderBrush}" />
-            <Setter Property="BorderThickness" Value="0 0 0 1" />
+        <Style Selector="Rectangle.HBorder">
+            <Setter Property="Fill" Value="{StaticResource Colors.Border.BorderBrush}" />
+            <Setter Property="Height" Value="1" />
             <Setter Property="HorizontalAlignment" Value="Stretch" />
-            <Setter Property="VerticalAlignment" Value="Stretch" />
+            <Setter Property="VerticalAlignment" Value="Bottom" />
             <Setter Property="IsHitTestVisible" Value="False" />
         </Style>
     </UserControl.Styles>
@@ -62,7 +63,7 @@
                 <TextBlock FontSize="15" FontWeight="SemiBold" Text="跨行与分组表头" />
                 <TextBlock Grid.Column="1"
                            Foreground="#5B6472"
-                           Text="演示分组字段、嵌套路径和多级处理阶段表头。"
+                           Text="演示分组字段纵向合并、多级表头横向组合和列宽拖拽后的对齐效果。"
                            TextTrimming="CharacterEllipsis" />
             </Grid>
         </Border>
@@ -73,7 +74,7 @@
                   CanUserResizeColumns="True"
                   GridLinesVisibility="None">
             <DataGrid.Columns>
-                <DataGridTemplateColumn Width="80" Header="分组">
+                <DataGridTemplateColumn Width="80" Header="产线组">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate x:DataType="vm:FlattenedProcessItem">
                             <Border BorderBrush="{StaticResource Colors.Border.BorderBrush}"
@@ -84,7 +85,7 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
 
-                <DataGridTemplateColumn Width="90" CanUserSort="False" Header="关键">
+                <DataGridTemplateColumn Width="90" CanUserSort="False" Header="重点">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate x:DataType="vm:FlattenedProcessItem">
                             <Border BorderBrush="{StaticResource Colors.Border.BorderBrush}"
@@ -98,7 +99,7 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
 
-                <DataGridTemplateColumn Width="80" CanUserSort="False" Header="周期">
+                <DataGridTemplateColumn Width="80" CanUserSort="False" Header="节拍">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate x:DataType="vm:FlattenedProcessItem">
                             <Border BorderBrush="{StaticResource Colors.Border.BorderBrush}"
@@ -109,7 +110,7 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
 
-                <DataGridTemplateColumn Width="150" CanUserSort="False" Header="名称">
+                <DataGridTemplateColumn Width="150" CanUserSort="False" Header="任务名称">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate x:DataType="vm:FlattenedProcessItem">
                             <Border BorderBrush="{StaticResource Colors.Border.BorderBrush}" BorderThickness="{Binding RowBorderThickness}">
@@ -129,7 +130,7 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
 
-                <DataGridTemplateColumn Width="90" CanUserSort="False" Header="源节点">
+                <DataGridTemplateColumn Width="90" CanUserSort="False" Header="采集节点">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate x:DataType="vm:FlattenedProcessItem">
                             <Border BorderBrush="{StaticResource Colors.Border.BorderBrush}" BorderThickness="{Binding RowBorderThickness}">
@@ -139,7 +140,7 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
 
-                <DataGridTemplateColumn Width="100" CanUserSort="False" Header="组内顺序">
+                <DataGridTemplateColumn Width="100" CanUserSort="False" Header="组内序号">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate x:DataType="vm:FlattenedProcessItem">
                             <Border BorderBrush="{StaticResource Colors.Border.BorderBrush}" BorderThickness="{Binding RowBorderThickness}">
@@ -149,7 +150,7 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
 
-                <DataGridTemplateColumn Width="120" CanUserSort="False" Header="主机">
+                <DataGridTemplateColumn Width="120" CanUserSort="False" Header="服务地址">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate x:DataType="vm:FlattenedProcessItem">
                             <Border BorderBrush="{StaticResource Colors.Border.BorderBrush}" BorderThickness="{Binding RowBorderThickness}">
@@ -164,9 +165,9 @@
                         <Grid Classes="MultiHeader"
                               Width="{Binding Bounds.Width, RelativeSource={RelativeSource AncestorType=DataGridColumnHeader}}"
                               RowDefinitions="20,20">
-                            <Border Grid.Row="0" Classes="HBorder" />
-                            <TextBlock Text="路径" Classes="Header" />
-                            <TextBlock Grid.Row="1" Text="程序路径" Classes="Header" />
+                            <Rectangle Grid.Row="0" Classes="HBorder" />
+                            <TextBlock Text="执行目录" Classes="Header" />
+                            <TextBlock Grid.Row="1" Text="程序入口" Classes="Header" />
                         </Grid>
                     </DataGridTemplateColumn.Header>
                     <DataGridTemplateColumn.CellTemplate>
@@ -183,8 +184,8 @@
                         <Grid Classes="MultiHeader"
                               Width="{Binding Bounds.Width, RelativeSource={RelativeSource AncestorType=DataGridColumnHeader}}"
                               RowDefinitions="20,20">
-                            <Border Grid.Row="0" Classes="HBorder" />
-                            <TextBlock Grid.Row="1" Text="工作路径" Classes="Header" />
+                            <Rectangle Grid.Row="0" Classes="HBorder" />
+                            <TextBlock Grid.Row="1" Text="运行目录" Classes="Header" />
                         </Grid>
                     </DataGridTemplateColumn.Header>
                     <DataGridTemplateColumn.CellTemplate>
@@ -196,7 +197,7 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
 
-                <DataGridTemplateColumn Width="80" CanUserSort="False" Header="参数">
+                <DataGridTemplateColumn Width="80" CanUserSort="False" Header="启动参数">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate x:DataType="vm:FlattenedProcessItem">
                             <Border BorderBrush="{StaticResource Colors.Border.BorderBrush}" BorderThickness="{Binding RowBorderThickness}">
@@ -206,7 +207,7 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
 
-                <DataGridTemplateColumn Width="100" CanUserSort="False" Header="自动启动">
+                <DataGridTemplateColumn Width="100" CanUserSort="False" Header="自启动">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate x:DataType="vm:FlattenedProcessItem">
                             <Border BorderBrush="{StaticResource Colors.Border.BorderBrush}" BorderThickness="{Binding RowBorderThickness}">
@@ -224,9 +225,9 @@
                         <Grid Classes="MultiHeader"
                               Width="{Binding Bounds.Width, RelativeSource={RelativeSource AncestorType=DataGridColumnHeader}}"
                               RowDefinitions="20,20">
-                            <Border Grid.Row="0" Classes="HBorder" />
-                            <TextBlock Text="处理流程" Classes="Header" />
-                            <TextBlock Grid.Row="1" Text="前置处理" Classes="Header" />
+                            <Rectangle Grid.Row="0" Classes="HBorder" />
+                            <TextBlock Text="执行流程" Classes="Header" />
+                            <TextBlock Grid.Row="1" Text="前置动作" Classes="Header" />
                         </Grid>
                     </DataGridTemplateColumn.Header>
                     <DataGridTemplateColumn.CellTemplate>
@@ -243,8 +244,8 @@
                         <Grid Classes="MultiHeader"
                               Width="{Binding Bounds.Width, RelativeSource={RelativeSource AncestorType=DataGridColumnHeader}}"
                               RowDefinitions="20,20">
-                            <Border Grid.Row="0" Classes="HBorder" />
-                            <TextBlock Grid.Row="1" Text="后置处理" Classes="Header" />
+                            <Rectangle Grid.Row="0" Classes="HBorder" />
+                            <TextBlock Grid.Row="1" Text="后置动作" Classes="Header" />
                         </Grid>
                     </DataGridTemplateColumn.Header>
                     <DataGridTemplateColumn.CellTemplate>
@@ -256,7 +257,7 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
 
-                <DataGridTemplateColumn Width="120" CanUserSort="False" Header="说明">
+                <DataGridTemplateColumn Width="120" CanUserSort="False" Header="状态说明">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate x:DataType="vm:FlattenedProcessItem">
                             <Border BorderBrush="{StaticResource Colors.Border.BorderBrush}" BorderThickness="{Binding RowBorderThickness}">

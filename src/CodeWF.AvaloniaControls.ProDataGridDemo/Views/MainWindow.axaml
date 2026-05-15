@@ -63,9 +63,9 @@
                     <TextBlock FontSize="16"
                                FontWeight="SemiBold"
                                Text="ProDataGrid 示例" />
-                    <TextBlock Classes="Caption"
+                <TextBlock Classes="Caption"
                                VerticalAlignment="Center"
-                               Text="左侧切换功能与性能演示，右侧查看实际效果。" />
+                               Text="左侧切换三态排序、分组表头、动态列和百万行大表演示。" />
                 </StackPanel>
             </Grid>
         </Border>
@@ -82,17 +82,8 @@
                 <TabItem Header="动态列">
                     <pages:DynamicColumnsView Margin="8" DataContext="{Binding DynamicColumns}" />
                 </TabItem>
-                <TabItem Header="基础交互">
-                    <views:DataGridDemo Margin="8" DataContext="{Binding BasicPerformance}" />
-                </TabItem>
-                <TabItem Header="十万行页签">
-                    <views:LargeDataGridView Margin="8" DataContext="{Binding LargeDataGrid120}" />
-                </TabItem>
-                <TabItem Header="二十万行页签">
-                    <views:LargeDataGridView Margin="8" DataContext="{Binding LargeDataGrid180}" />
-                </TabItem>
-                <TabItem Header="文档工作区">
-                    <views:DocumentWorkspaceView Margin="8" DataContext="{Binding DocumentWorkspace}" />
+                <TabItem Header="百万行性能">
+                    <views:LargeDataGridView Margin="8" DataContext="{Binding MillionRows}" />
                 </TabItem>
             </TabControl>
         </Border>

@@ -15,25 +15,32 @@ internal static class DataGridColumnInitializer
             return;
         }
 
-        AddTextColumn(dataGrid, "编号", 90, "Id");
-        AddTextColumn(dataGrid, "名称", 180, "Name");
-        AddTextColumn(dataGrid, "启用", 90, "Enabled");
-        AddTextColumn(dataGrid, "源节点", 90, "SourceNode");
-        AddTextColumn(dataGrid, "主机", 180, "Host");
-        AddTextColumn(dataGrid, "程序路径", 240, "ProgramPath");
-        AddTextColumn(dataGrid, "工作路径", 220, "WorkPath");
-        AddTextColumn(dataGrid, "参数", 160, "Params");
-        AddTextColumn(dataGrid, "自动启动", 100, "AutoStart");
-        AddTextColumn(dataGrid, "前置处理", 220, "PreProcess");
-        AddTextColumn(dataGrid, "后置处理", 240, "PostProcess");
-        AddTextColumn(dataGrid, "说明", 260, "Description");
+        AddTextColumn(dataGrid, "序号", 90, "Id");
+        AddTextColumn(dataGrid, "工单号", 150, "WorkOrder");
+        AddTextColumn(dataGrid, "产线", 110, "LineName");
+        AddTextColumn(dataGrid, "工位", 100, "StationName");
+        AddTextColumn(dataGrid, "设备编码", 130, "DeviceCode");
+        AddTextColumn(dataGrid, "设备名称", 150, "Name");
+        AddTextColumn(dataGrid, "批次号", 120, "BatchNo");
+        AddTextColumn(dataGrid, "产品型号", 110, "ProductModel");
+        AddTextColumn(dataGrid, "状态", 90, "Status");
+        AddTextColumn(dataGrid, "启用", 80, "Enabled");
+        AddTextColumn(dataGrid, "班次", 90, "Shift");
+        AddTextColumn(dataGrid, "负责人", 90, "Owner");
+        AddTextColumn(dataGrid, "计划数量", 110, "PlanQuantity");
+        AddTextColumn(dataGrid, "完成数量", 110, "CompletedQuantity");
+        AddTextColumn(dataGrid, "良率(%)", 100, "YieldRate");
+        AddTextColumn(dataGrid, "温度(℃)", 100, "Temperature");
+        AddTextColumn(dataGrid, "压力(MPa)", 110, "Pressure");
+        AddTextColumn(dataGrid, "运行分钟", 110, "RunMinutes");
+        AddTextColumn(dataGrid, "最近采集", 140, "LastSampleTime");
+        AddTextColumn(dataGrid, "备注", 260, "Description");
     }
 
     public static void ApplyDefaultBehavior(DataGrid dataGrid)
     {
         dataGrid.ApplyPerformancePreset();
-        dataGrid.AddSorting();
-        dataGrid.EnableSmartTooltips(1, 4, 5, 6, 7, 9, 10, 11);
+        dataGrid.EnableSmartTooltips(1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 18, 19);
     }
 
     [UnconditionalSuppressMessage("Trimming", "IL2026", Justification = "The performance demo intentionally uses reflection binding to build columns dynamically.")]
@@ -44,6 +51,7 @@ internal static class DataGridColumnInitializer
         {
             Header = header,
             Width = new DataGridLength(width),
+            CanUserSort = false,
             SortMemberPath = path,
             Binding = new Binding(path)
         });

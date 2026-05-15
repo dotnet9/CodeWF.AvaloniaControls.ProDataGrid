@@ -176,7 +176,7 @@ public class CrossRowsAndColumnsViewModel : ReactiveObject, IDisposable
         item.Enabled = !item.Enabled;
         item.AutoStart = !item.AutoStart;
         item.Params = Random.Shared.Next(2) == 0 ? "---" : $"-type {Random.Shared.Next(1, 4)}";
-        item.Description = $"Updated {DateTime.Now:HH:mm:ss}";
+        item.Description = $"已刷新 {DateTime.Now:HH:mm:ss}";
     }
 
     private GroupItem CreateGroup(int itemCount)
@@ -203,17 +203,17 @@ public class CrossRowsAndColumnsViewModel : ReactiveObject, IDisposable
         return new ProcessItem
         {
             Id = id,
-            Name = $"Process {id}",
+            Name = $"采集任务 {id:000}",
             Enabled = Random.Shared.Next(5) == 0,
-            SourceNode = Random.Shared.Next(0, 8),
-            Host = "127.0.0.1:89333",
-            ProgramPath = "../../test/bb.exe",
-            WorkPath = "../../test",
-            Params = Random.Shared.Next(5) == 0 ? "---" : "-type 1",
+            SourceNode = Random.Shared.Next(1, 9),
+            Host = $"10.10.{Random.Shared.Next(1, 20)}.{Random.Shared.Next(10, 240)}",
+            ProgramPath = $@"D:\MES\Collector\Task{id:000}\run.exe",
+            WorkPath = $@"D:\MES\Collector\Task{id:000}",
+            Params = Random.Shared.Next(5) == 0 ? "---" : "--mode auto",
             AutoStart = Random.Shared.Next(5) == 0,
-            PreProcess = Random.Shared.Next(5) == 0 ? "---" : "make dir",
-            PostProcess = Random.Shared.Next(5) == 0 ? "---" : "remove file",
-            Description = Random.Shared.Next(5) == 0 ? "---" : "for dynamic row span test",
+            PreProcess = Random.Shared.Next(5) == 0 ? "---" : "校验批次并准备缓存",
+            PostProcess = Random.Shared.Next(5) == 0 ? "---" : "归档结果并上报状态",
+            Description = Random.Shared.Next(5) == 0 ? "---" : "分组表头与纵向合并演示",
         };
     }
 

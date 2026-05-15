@@ -15,13 +15,26 @@ namespace CodeWF.AvaloniaControls.ProDataGridDemo.ViewModels.Pages;
 public class DynamicColumnsViewModel : ReactiveObject, IDisposable
 {
     private const int MinMetricCount = 5;
-    private const int MaxMetricCount = 12;
-    private const int MinGroupCount = 16;
-    private const int MaxGroupCount = 30;
+    private const int MaxMetricCount = 9;
+    private const int MinGroupCount = 12;
+    private const int MaxGroupCount = 20;
+
+    private static readonly string[] MetricNames =
+    [
+        "温度(℃)",
+        "压力(MPa)",
+        "电流(A)",
+        "电压(V)",
+        "转速(rpm)",
+        "产量(pcs)",
+        "良率(%)",
+        "能耗(kWh)",
+        "节拍(s)"
+    ];
 
     private bool _isFirstLoadDataGrid = true;
     private bool _isAddingColumns = true;
-    private bool _isAddingRows = true;
+    private bool _isAddingRows;
     private int _metricCount = 8;
     private Avalonia.Controls.DataGrid? _myDataGrid;
     private int _nextGroupIndex;
@@ -30,7 +43,7 @@ public class DynamicColumnsViewModel : ReactiveObject, IDisposable
 
     public DynamicColumnsViewModel()
     {
-        for (var i = 0; i < 18; i++)
+        for (var i = 0; i < MaxGroupCount; i++)
         {
             AddGroup();
         }
@@ -45,9 +58,9 @@ public class DynamicColumnsViewModel : ReactiveObject, IDisposable
 
         foreach (var group in DynamicGroups)
         {
-            foreach (var item in group.Items!)
+            for (var i = 0; i < group.Items!.Count; i++)
             {
-                item.Value = $"数值 {Random.Shared.Next(1000, 9999)}";
+                group.Items[i].Value = CreateMetricValue(i, DynamicGroups.IndexOf(group) + _tick);
             }
 
             group.RaisePropertyChanged(nameof(DynamicGroup.Items));
@@ -102,7 +115,7 @@ public class DynamicColumnsViewModel : ReactiveObject, IDisposable
         _nextGroupIndex++;
         var group = new DynamicGroup
         {
-            Name = $"分组 {_nextGroupIndex}",
+            Name = $"设备 {_nextGroupIndex:00}",
             Items = []
         };
 
@@ -112,21 +125,38 @@ public class DynamicColumnsViewModel : ReactiveObject, IDisposable
         }
 
         DynamicGroups.Add(group);
+        NormalizeGroupNames();
     }
 
     private static DynamicItem CreateMetricItem(int metricIndex, int groupIndex) => new()
     {
         Key = $"p{metricIndex}",
-        Name = $"指标 {metricIndex + 1}",
-        Value = $"数值 {groupIndex}-{metricIndex + 1}"
+        Name = MetricNames[metricIndex],
+        Value = CreateMetricValue(metricIndex, groupIndex)
     };
+
+    private static string CreateMetricValue(int metricIndex, int sample)
+    {
+        return metricIndex switch
+        {
+            0 => $"{22 + sample % 9}.{sample % 10}",
+            1 => $"0.{45 + sample % 40}",
+            2 => $"{8 + sample % 12}.{sample % 10}",
+            3 => $"{218 + sample % 12}",
+            4 => $"{900 + sample % 360}",
+            5 => $"{120 + sample % 80}",
+            6 => $"{96 + sample % 4}.{sample % 10}",
+            7 => $"{18 + sample % 10}.{sample % 10}",
+            _ => $"{6 + sample % 5}.{sample % 10}"
+        };
+    }
 
     [UnconditionalSuppressMessage("Trimming", "IL2026", Justification = "Demo page intentionally uses runtime-generated reflection bindings for dynamic columns.")]
     [UnconditionalSuppressMessage("AOT", "IL3050", Justification = "Demo page intentionally uses runtime-generated reflection bindings for dynamic columns.")]
     private static DataGridTemplateColumn CreateMetricColumn(int index) => new()
     {
         CanUserResize = true,
-        Header = $"指标 {index + 1}",
+        Header = MetricNames[index],
         IsReadOnly = true,
         MinWidth = 80,
         Width = new DataGridLength(120),
@@ -149,9 +179,18 @@ public class DynamicColumnsViewModel : ReactiveObject, IDisposable
         if (DynamicGroups.Count > MinGroupCount)
         {
             DynamicGroups.RemoveAt(DynamicGroups.Count - 1);
+            NormalizeGroupNames();
         }
 
         _isAddingRows = DynamicGroups.Count <= MinGroupCount;
+    }
+
+    private void NormalizeGroupNames()
+    {
+        for (var i = 0; i < DynamicGroups.Count; i++)
+        {
+            DynamicGroups[i].Name = $"设备 {i + 1:00}";
+        }
     }
 
     private void UpdateDynamicColumns()

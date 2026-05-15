@@ -1,8 +1,9 @@
 using Avalonia.Controls;
-using Avalonia.Markup.Xaml;
 using Avalonia.Data.Converters;
+using Avalonia.VisualTree;
 using System;
 using System.Globalization;
+using System.Linq;
 
 namespace CodeWF.AvaloniaControls.ProDataGridDemo.Views.Pages;
 
@@ -11,6 +12,20 @@ public partial class CrossRowsAndColumnsView : UserControl
     public CrossRowsAndColumnsView()
     {
         InitializeComponent();
+        Loaded += (_, _) => UpdateGroupedHeaderWidths();
+        LayoutUpdated += (_, _) => UpdateGroupedHeaderWidths();
+    }
+
+    private void UpdateGroupedHeaderWidths()
+    {
+        foreach (var headerGrid in this.GetVisualDescendants().OfType<Grid>().Where(grid => grid.Classes.Contains("MultiHeader")))
+        {
+            var header = headerGrid.GetVisualAncestors().OfType<DataGridColumnHeader>().FirstOrDefault();
+            if (header is not null && header.Bounds.Width > 0)
+            {
+                headerGrid.Width = header.Bounds.Width + 1;
+            }
+        }
     }
 }
 

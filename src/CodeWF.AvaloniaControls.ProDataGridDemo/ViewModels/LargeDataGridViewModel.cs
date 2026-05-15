@@ -7,7 +7,7 @@ public class LargeDataGridViewModel : ViewModelBase
 {
     private readonly int _rowCount;
     private readonly int _seed;
-    private IReadOnlyList<ProcessItem>? _items;
+    private IReadOnlyList<PerformanceItem>? _items;
 
     public LargeDataGridViewModel(int rowCount, int seed, string headerTitle, string headerDescription)
     {
@@ -15,14 +15,14 @@ public class LargeDataGridViewModel : ViewModelBase
         _seed = seed;
         HeaderTitle = headerTitle;
         HeaderDescription = headerDescription;
-        Summary = $"共 {rowCount:N0} 行，直接保活在页签中，用于观察切换、滚动和排序时是否出现明显卡顿。";
+        Summary = $"共 {rowCount:N0} 行 / 20 列，按索引懒生成数据，用于观察大表滚动与列宽调整。";
     }
 
     public string HeaderTitle { get; }
 
     public string HeaderDescription { get; }
 
-    public IReadOnlyList<ProcessItem> Items => _items ??= PerformanceDataFactory.CreateRows(_rowCount, _seed, HeaderTitle);
+    public IReadOnlyList<PerformanceItem> Items => _items ??= PerformanceDataFactory.CreateRows(_rowCount, _seed, HeaderTitle);
 
     public string Summary { get; }
 }

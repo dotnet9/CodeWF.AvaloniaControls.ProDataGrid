@@ -45,7 +45,7 @@ public partial class DynamicColumnsView : UserControl
         var width = header?.Bounds.Width ?? MyDataGrid.Columns[0].ActualWidth;
         var height = header?.Bounds.Height ?? CornerHeaderGrid.Bounds.Height;
 
-        CornerHeaderGrid.Width = Math.Max(0, width);
+        CornerHeaderGrid.Width = Math.Max(0, width + 1);
         CornerHeaderGrid.Height = Math.Max(0, height);
 
         if (CornerHeaderGrid.Width > 0 && CornerHeaderGrid.Height > 0)

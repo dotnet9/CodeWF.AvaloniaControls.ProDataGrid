@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using CodeWF.AvaloniaControls.ProDataGridDemo.Models;
 
@@ -6,36 +7,71 @@ namespace CodeWF.AvaloniaControls.ProDataGridDemo.ViewModels;
 
 internal static class PerformanceDataFactory
 {
-    public static IReadOnlyList<ProcessItem> CreateRows(int count, int seed, string scenarioName)
+    public static IReadOnlyList<PerformanceItem> CreateRows(int count, int seed, string scenarioName)
+        => new VirtualPerformanceItemList(count, seed, scenarioName);
+
+    private sealed class VirtualPerformanceItemList(int count, int seed, string scenarioName) : IReadOnlyList<PerformanceItem>, IList
     {
-        var random = new Random(seed);
-        var items = new List<ProcessItem>(count);
+        public int Count => count;
 
-        for (var i = 0; i < count; i++)
+        public bool IsFixedSize => true;
+
+        public bool IsReadOnly => true;
+
+        public bool IsSynchronized => false;
+
+        public object SyncRoot => this;
+
+        public PerformanceItem this[int index] => CreateRow(index);
+
+        object? IList.this[int index]
         {
-            var sourceNode = random.Next(1, 16);
-            var lineNo = seed % 8 + 1;
-            var stationNo = i % 24 + 1;
-            var isEnabled = (i + seed) % 3 != 0;
-            var autoStart = (i + seed) % 5 == 0;
-
-            items.Add(new ProcessItem
-            {
-                Id = i + 1,
-                Name = $"{scenarioName}-工位-{stationNo:00}",
-                Enabled = isEnabled,
-                SourceNode = sourceNode,
-                Host = $"10.{seed % 20}.{sourceNode}.{stationNo}",
-                ProgramPath = $@"D:\Apps\Line{lineNo}\Worker{stationNo:00}\run.exe",
-                WorkPath = $@"D:\Apps\Line{lineNo}\Worker{stationNo:00}",
-                Params = autoStart ? "--boot --safe" : "--watch --batch",
-                AutoStart = autoStart,
-                PreProcess = isEnabled ? "校验缓存、准备上下文" : "等待人工确认",
-                PostProcess = autoStart ? "上传日志并清理临时文件" : "归档结果并发送通知",
-                Description = $"用于模拟 {scenarioName} 的大数据量页签切换场景"
-            });
+            get => this[index];
+            set => throw new NotSupportedException();
         }
 
-        return items;
+        public IEnumerator<PerformanceItem> GetEnumerator()
+        {
+            for (var i = 0; i < count; i++)
+            {
+                yield return CreateRow(i);
+            }
+        }
+
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+
+        public int Add(object? value) => throw new NotSupportedException();
+
+        public void Clear() => throw new NotSupportedException();
+
+        public bool Contains(object? value) => IndexOf(value) >= 0;
+
+        public int IndexOf(object? value)
+            => value is PerformanceItem item && item.Id > 0 && item.Id <= count ? item.Id - 1 : -1;
+
+        public void Insert(int index, object? value) => throw new NotSupportedException();
+
+        public void Remove(object? value) => throw new NotSupportedException();
+
+        public void RemoveAt(int index) => throw new NotSupportedException();
+
+        public void CopyTo(Array array, int index)
+        {
+            for (var i = 0; i < count; i++)
+            {
+                array.SetValue(CreateRow(i), index + i);
+            }
+        }
+
+        private PerformanceItem CreateRow(int index)
+        {
+            ArgumentOutOfRangeException.ThrowIfNegative(index);
+            if (index >= count)
+            {
+                throw new ArgumentOutOfRangeException(nameof(index));
+            }
+
+            return new PerformanceItem(index, seed, scenarioName);
+        }
     }
 }
