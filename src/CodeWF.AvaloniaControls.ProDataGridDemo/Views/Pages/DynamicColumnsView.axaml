@@ -27,7 +27,7 @@
         </Style>
         <Style Selector="TextBlock.Header">
             <Setter Property="VerticalAlignment" Value="Center" />
-            <Setter Property="Margin" Value="0" />
+            <Setter Property="Margin" Value="{DynamicResource DataGridCellTextBlockDefaultMargin}" />
         </Style>
         <Style Selector="TextBlock.Content">
             <Setter Property="VerticalAlignment" Value="Center" />

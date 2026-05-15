@@ -10,6 +10,7 @@
 - Consolidated the large data scenarios into a single 1,000,000-row by 20-column performance table with lightweight generated rows.
 - Limited the dynamic-column demo to 20 visible rows and no more than 10 total columns, with clearer device metric labels.
 - Refined grouped-header captions, sample data, and horizontal header lines so they align with the active column width.
+- Added a demo-wide scrollbar expansion toggle and padded generated/grouped column headers for better readability.
 
 ## 2026-05-08
 

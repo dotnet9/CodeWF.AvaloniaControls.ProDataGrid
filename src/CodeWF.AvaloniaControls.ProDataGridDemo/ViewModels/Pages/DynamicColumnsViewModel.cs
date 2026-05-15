@@ -156,7 +156,11 @@ public class DynamicColumnsViewModel : ReactiveObject, IDisposable
     private static DataGridTemplateColumn CreateMetricColumn(int index) => new()
     {
         CanUserResize = true,
-        Header = MetricNames[index],
+        Header = new TextBlock
+        {
+            Text = MetricNames[index],
+            Margin = new Avalonia.Thickness(12, 0, 0, 0)
+        },
         IsReadOnly = true,
         MinWidth = 80,
         Width = new DataGridLength(120),

@@ -23,7 +23,7 @@ public partial class CrossRowsAndColumnsView : UserControl
             var header = headerGrid.GetVisualAncestors().OfType<DataGridColumnHeader>().FirstOrDefault();
             if (header is not null && header.Bounds.Width > 0)
             {
-                headerGrid.Width = header.Bounds.Width + 1;
+                headerGrid.Width = header.Bounds.Width + 8;
             }
         }
     }

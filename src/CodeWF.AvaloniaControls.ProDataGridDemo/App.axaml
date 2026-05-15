@@ -9,9 +9,5 @@
         <semi:ProDataGridSemiTheme />
         <codewf:CodeWFProDataGridTheme />
         <local:OwnerTheme />
-        <!-- 无障碍滚动条：默认常显且加宽，方便老年用户识别和拖动。 -->
-        <Style Selector="ScrollViewer">
-            <Setter Property="AllowAutoHide" Value="False" />
-        </Style>
     </Application.Styles>
 </Application>
