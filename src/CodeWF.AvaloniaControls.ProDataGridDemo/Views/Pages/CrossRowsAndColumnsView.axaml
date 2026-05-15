@@ -54,6 +54,12 @@
             <Setter Property="Margin" Value="0 0 -8 0" />
             <Setter Property="IsHitTestVisible" Value="False" />
         </Style>
+        <Style Selector="Border.MultiHeaderText">
+            <Setter Property="Padding" Value="12 0 8 0" />
+        </Style>
+        <Style Selector="Border.MultiHeaderText TextBlock.Header">
+            <Setter Property="Margin" Value="0" />
+        </Style>
     </UserControl.Styles>
 
     <DataGrid x:Name="ProcessDataGrid"
@@ -177,8 +183,12 @@
                               Width="{Binding Bounds.Width, RelativeSource={RelativeSource AncestorType=DataGridColumnHeader}}"
                               RowDefinitions="20,20">
                             <Rectangle Grid.Row="0" Classes="HBorder" />
-                            <TextBlock Text="执行目录" Classes="Header" />
-                            <TextBlock Grid.Row="1" Text="程序入口" Classes="Header" />
+                            <Border Classes="MultiHeaderText">
+                                <TextBlock Text="执行目录" Classes="Header" />
+                            </Border>
+                            <Border Grid.Row="1" Classes="MultiHeaderText">
+                                <TextBlock Text="程序入口" Classes="Header" />
+                            </Border>
                         </Grid>
                     </DataGridTemplateColumn.Header>
                     <DataGridTemplateColumn.CellTemplate>
@@ -196,7 +206,9 @@
                               Width="{Binding Bounds.Width, RelativeSource={RelativeSource AncestorType=DataGridColumnHeader}}"
                               RowDefinitions="20,20">
                             <Rectangle Grid.Row="0" Classes="HBorder" />
-                            <TextBlock Grid.Row="1" Text="运行目录" Classes="Header" />
+                            <Border Grid.Row="1" Classes="MultiHeaderText">
+                                <TextBlock Text="运行目录" Classes="Header" />
+                            </Border>
                         </Grid>
                     </DataGridTemplateColumn.Header>
                     <DataGridTemplateColumn.CellTemplate>
@@ -243,8 +255,12 @@
                               Width="{Binding Bounds.Width, RelativeSource={RelativeSource AncestorType=DataGridColumnHeader}}"
                               RowDefinitions="20,20">
                             <Rectangle Grid.Row="0" Classes="HBorder" />
-                            <TextBlock Text="执行流程" Classes="Header" />
-                            <TextBlock Grid.Row="1" Text="前置动作" Classes="Header" />
+                            <Border Classes="MultiHeaderText">
+                                <TextBlock Text="执行流程" Classes="Header" />
+                            </Border>
+                            <Border Grid.Row="1" Classes="MultiHeaderText">
+                                <TextBlock Text="前置动作" Classes="Header" />
+                            </Border>
                         </Grid>
                     </DataGridTemplateColumn.Header>
                     <DataGridTemplateColumn.CellTemplate>
@@ -262,7 +278,9 @@
                               Width="{Binding Bounds.Width, RelativeSource={RelativeSource AncestorType=DataGridColumnHeader}}"
                               RowDefinitions="20,20">
                             <Rectangle Grid.Row="0" Classes="HBorder" />
-                            <TextBlock Grid.Row="1" Text="后置动作" Classes="Header" />
+                            <Border Grid.Row="1" Classes="MultiHeaderText">
+                                <TextBlock Text="后置动作" Classes="Header" />
+                            </Border>
                         </Grid>
                     </DataGridTemplateColumn.Header>
                     <DataGridTemplateColumn.CellTemplate>
