@@ -14,6 +14,7 @@
 - 🔨[优化]-Refined grouped-header captions, sample data, and horizontal header lines so they align with the active column width.
 - 😄[新增]-Added a demo-wide scrollbar expansion toggle and padded generated/grouped column headers for better readability.
 - 🔨[优化]-Made the scrollbar expansion toggle apply directly to live scroll viewers, removed redundant per-page demo title strips, and widened grouped-header captions to avoid clipping near resize grips.
+- 🔨[优化]-Trimmed package dependencies so the core and theme libraries depend on `ProDataGrid` directly without forcing Semi.Avalonia packages.
 
 ## V12.0.2.1（2026-05-08）
 

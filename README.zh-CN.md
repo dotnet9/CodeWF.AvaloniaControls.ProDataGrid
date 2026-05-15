@@ -17,7 +17,7 @@ Install-Package CodeWF.AvaloniaControls.ProDataGrid
 ## 仓库结构
 
 - `src/CodeWF.AvaloniaControls.ProDataGrid`：可复用的 ProDataGrid 扩展类库
-- `src/CodeWF.AvaloniaControls.ProDataGrid.Themes`：基于 Semi.Avalonia.ProDataGrid 的最小主题补丁
+- `src/CodeWF.AvaloniaControls.ProDataGrid.Themes`：面向 ProDataGrid 模板的最小样式补丁
 - `src/CodeWF.AvaloniaControls.ProDataGridDemo`：合并后的功能与性能示例工程
 - `CodeWF.AvaloniaControls.ProDataGrid.slnx`：ProDataGrid 类库和示例的解决方案视图
 

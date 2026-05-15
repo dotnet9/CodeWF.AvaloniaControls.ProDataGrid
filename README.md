@@ -17,7 +17,7 @@ Install-Package CodeWF.AvaloniaControls.ProDataGrid
 ## Repository Layout
 
 - `src/CodeWF.AvaloniaControls.ProDataGrid`: reusable ProDataGrid extension library
-- `src/CodeWF.AvaloniaControls.ProDataGrid.Themes`: minimal theme adjustments layered on Semi.Avalonia.ProDataGrid
+- `src/CodeWF.AvaloniaControls.ProDataGrid.Themes`: minimal ProDataGrid template style adjustments
 - `src/CodeWF.AvaloniaControls.ProDataGridDemo`: combined functional and performance samples
 - `CodeWF.AvaloniaControls.ProDataGrid.slnx`: solution view for the ProDataGrid library and samples
 

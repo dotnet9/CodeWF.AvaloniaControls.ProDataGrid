@@ -17,7 +17,6 @@
 
 	<ItemGroup>
 		<PackageReference Include="Avalonia" />
-		<PackageReference Include="Semi.Avalonia" />
-		<PackageReference Include="Semi.Avalonia.ProDataGrid" />
+		<PackageReference Include="ProDataGrid" />
 	</ItemGroup>
 </Project>

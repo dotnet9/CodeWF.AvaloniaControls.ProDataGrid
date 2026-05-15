@@ -21,6 +21,7 @@
 		<PackageReference Include="Avalonia.Fonts.Inter" />
 		<PackageReference Include="ReactiveUI.Avalonia" />
 		<PackageReference Include="Semi.Avalonia" />
+		<PackageReference Include="Semi.Avalonia.ProDataGrid" />
 		<PackageReference Include="System.Drawing.Common" />
 		<PackageReference Include="YY-Thunks" />
 		<PackageReference Include="VC-LTL" />
