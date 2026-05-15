@@ -11,6 +11,7 @@
 - Limited the dynamic-column demo to 20 visible rows and no more than 10 total columns, with clearer device metric labels.
 - Refined grouped-header captions, sample data, and horizontal header lines so they align with the active column width.
 - Added a demo-wide scrollbar expansion toggle and padded generated/grouped column headers for better readability.
+- Made the scrollbar expansion toggle apply directly to live scroll viewers, removed redundant per-page demo title strips, and widened grouped-header captions to avoid clipping near resize grips.
 
 ## 2026-05-08
 

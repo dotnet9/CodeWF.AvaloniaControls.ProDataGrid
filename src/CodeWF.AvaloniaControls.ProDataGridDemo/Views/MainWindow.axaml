@@ -9,7 +9,7 @@
     xmlns:vm="clr-namespace:CodeWF.AvaloniaControls.ProDataGridDemo.ViewModels"
     x:CompileBindings="True"
     x:DataType="vm:MainWindowViewModel"
-    Title="ProDataGrid Demo"
+    Title="ProDataGrid 示例 - 三态排序、分组表头、动态列、百万行性能"
     Width="1420"
     Height="900"
     Background="#F4F7FB"
@@ -34,9 +34,6 @@
             <Setter Property="BorderThickness" Value="1" />
             <Setter Property="CornerRadius" Value="8" />
         </Style>
-        <Style Selector="TextBlock.Caption">
-            <Setter Property="Foreground" Value="#64748B" />
-        </Style>
         <Style Selector="TabControl.DemoTabs">
             <Setter Property="Background" Value="Transparent" />
         </Style>
@@ -47,44 +44,32 @@
             <Setter Property="FontWeight" Value="SemiBold" />
             <Setter Property="HorizontalContentAlignment" Value="Left" />
         </Style>
+        <Style Selector="Window.ScrollBarsExpanded ScrollViewer">
+            <Setter Property="AllowAutoHide" Value="False" />
+        </Style>
+        <Style Selector="Window.ScrollBarsExpanded ScrollBar:vertical">
+            <Setter Property="Width" Value="16" />
+            <Setter Property="MinWidth" Value="16" />
+            <Setter Property="Opacity" Value="1" />
+        </Style>
+        <Style Selector="Window.ScrollBarsExpanded ScrollBar:horizontal">
+            <Setter Property="Height" Value="16" />
+            <Setter Property="MinHeight" Value="16" />
+            <Setter Property="Opacity" Value="1" />
+        </Style>
     </Window.Styles>
 
-    <Grid Margin="12" RowDefinitions="Auto,*" RowSpacing="8">
-        <Border Classes="Panel" Padding="12,7">
-            <Grid ColumnDefinitions="Auto,*" ColumnSpacing="10" VerticalAlignment="Center">
-                <Image Width="22"
-                       Height="22"
-                       RenderOptions.BitmapInterpolationMode="HighQuality"
-                       Source="/Assets/logo.png" />
-                <StackPanel Grid.Column="1"
-                            Orientation="Horizontal"
-                            Spacing="10"
-                            VerticalAlignment="Center">
-                    <TextBlock FontSize="16"
-                               FontWeight="SemiBold"
-                               Text="ProDataGrid 示例" />
-                    <TextBlock Classes="Caption"
-                               VerticalAlignment="Center"
-                               Text="左侧切换三态排序、分组表头、动态列和百万行大表演示。" />
-                </StackPanel>
-            </Grid>
-        </Border>
-
-        <Border Grid.Row="1" Classes="Panel" Padding="8">
-            <Grid RowDefinitions="Auto,*" RowSpacing="8">
+    <Grid Margin="12">
+        <Border Classes="Panel" Padding="8">
+            <Grid RowDefinitions="Auto,*" RowSpacing="6">
                 <Border Padding="8,5"
                         Background="#F8FAFC"
                         BorderBrush="#E4E9F2"
                         BorderThickness="1"
                         CornerRadius="6">
-                    <StackPanel Orientation="Horizontal" Spacing="12" VerticalAlignment="Center">
-                        <CheckBox Content="滚动条不收缩"
-                                  FontWeight="SemiBold"
-                                  IsChecked="{Binding KeepScrollBarsExpanded}" />
-                        <TextBlock Classes="Caption"
-                                   VerticalAlignment="Center"
-                                   Text="统一切换所有示例中的水平、竖直滚动条显示方式。" />
-                    </StackPanel>
+                    <CheckBox Content="滚动条不收缩"
+                              FontWeight="SemiBold"
+                              IsChecked="{Binding KeepScrollBarsExpanded}" />
                 </Border>
 
                 <TabControl Grid.Row="1"

@@ -159,7 +159,10 @@ public class DynamicColumnsViewModel : ReactiveObject, IDisposable
         Header = new TextBlock
         {
             Text = MetricNames[index],
-            Margin = new Avalonia.Thickness(12, 0, 0, 0)
+            HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Left,
+            VerticalAlignment = Avalonia.Layout.VerticalAlignment.Center,
+            Margin = new Avalonia.Thickness(12, 0, 8, 0),
+            TextTrimming = Avalonia.Media.TextTrimming.CharacterEllipsis
         },
         IsReadOnly = true,
         MinWidth = 80,

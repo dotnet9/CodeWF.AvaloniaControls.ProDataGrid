@@ -9,33 +9,11 @@
              x:DataType="vm:LargeDataGridViewModel"
              x:CompileBindings="True"
              x:Class="CodeWF.AvaloniaControls.ProDataGridDemo.Views.LargeDataGridView">
-    <Grid RowDefinitions="Auto,*" RowSpacing="8">
-        <Border Padding="8,6"
-                Background="#F8FAFC"
-                BorderBrush="#E4E9F2"
-                BorderThickness="1"
-                CornerRadius="6">
-            <Grid ColumnDefinitions="Auto,Auto,*" ColumnSpacing="12" VerticalAlignment="Center">
-                <TextBlock FontSize="15" FontWeight="SemiBold" Text="{Binding HeaderTitle}" />
-                <TextBlock Grid.Column="1"
-                           Foreground="#334155"
-                           FontWeight="SemiBold"
-                           Text="{Binding Summary}" />
-                <TextBlock
-                           Grid.Column="2"
-                           Foreground="#5B6472"
-                           Text="{Binding HeaderDescription}"
-                           TextTrimming="CharacterEllipsis" />
-            </Grid>
-        </Border>
-
-        <Border Grid.Row="1"
-                Background="White"
-                BorderBrush="#E4E9F2"
-                BorderThickness="1"
-                CornerRadius="6"
-                Padding="0">
-            <DataGrid x:Name="ProcessDataGrid" />
-        </Border>
-    </Grid>
+    <Border Background="White"
+            BorderBrush="#E4E9F2"
+            BorderThickness="1"
+            CornerRadius="6"
+            Padding="0">
+        <DataGrid x:Name="ProcessDataGrid" />
+    </Border>
 </UserControl>
