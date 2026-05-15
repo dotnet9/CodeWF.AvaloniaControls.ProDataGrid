@@ -13,17 +13,19 @@
              d:DesignWidth="800"
              d:DesignHeight="450"
              mc:Ignorable="d">
-    <Grid RowDefinitions="Auto,*" RowSpacing="14">
-        <Border Padding="16"
+    <Grid RowDefinitions="Auto,*" RowSpacing="8">
+        <Border Padding="10,8"
                 Background="#F8FAFC"
                 BorderBrush="#E4E9F2"
                 BorderThickness="1"
-                CornerRadius="14">
-            <StackPanel Spacing="6">
-                <TextBlock FontSize="20" FontWeight="SemiBold" Text="排序方式对比" />
-                <TextBlock Foreground="#5B6472"
-                           Text="第一个页签展示默认的两态排序行为，第二个页签启用自定义三态排序扩展，使同一列可在升序、降序和取消排序之间循环切换。" />
-            </StackPanel>
+                CornerRadius="8">
+            <Grid ColumnDefinitions="Auto,*" ColumnSpacing="14" VerticalAlignment="Center">
+                <TextBlock FontSize="16" FontWeight="SemiBold" Text="排序方式对比" />
+                <TextBlock Grid.Column="1"
+                           Foreground="#5B6472"
+                           Text="对比默认两态排序与 AddSorting 三态排序效果。"
+                           TextTrimming="CharacterEllipsis" />
+            </Grid>
         </Border>
 
         <TabControl Grid.Row="1">
@@ -33,11 +35,11 @@
 
             <TabItem Header="自定义三态">
                 <Grid RowDefinitions="Auto,*" RowSpacing="12">
-                    <Border Padding="12"
+                    <Border Padding="10"
                             Background="#F8FAFC"
                             BorderBrush="#E4E9F2"
                             BorderThickness="1"
-                            CornerRadius="10">
+                            CornerRadius="8">
                         <StackPanel Orientation="Horizontal" Spacing="12" VerticalAlignment="Center">
                             <Button Classes="Success"
                                     x:Name="EnableTriStateSortingButton"

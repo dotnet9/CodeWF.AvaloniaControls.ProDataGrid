@@ -34,98 +34,61 @@
             <Setter Property="Background" Value="White" />
             <Setter Property="BorderBrush" Value="{StaticResource PanelBorderBrush}" />
             <Setter Property="BorderThickness" Value="1" />
-            <Setter Property="CornerRadius" Value="20" />
+            <Setter Property="CornerRadius" Value="12" />
         </Style>
         <Style Selector="TextBlock.Caption">
             <Setter Property="Foreground" Value="#64748B" />
         </Style>
         <Style Selector="TabItem">
-            <Setter Property="Padding" Value="18,12" />
-            <Setter Property="CornerRadius" Value="12,12,0,0" />
-            <Setter Property="MinHeight" Value="42" />
+            <Setter Property="Padding" Value="14,8" />
+            <Setter Property="CornerRadius" Value="8,8,0,0" />
+            <Setter Property="MinHeight" Value="36" />
             <Setter Property="FontWeight" Value="SemiBold" />
         </Style>
     </Window.Styles>
 
-    <Grid Margin="22" RowDefinitions="Auto,*" RowSpacing="18">
-        <Border Padding="28"
-                CornerRadius="24"
+    <Grid Margin="18" RowDefinitions="Auto,*" RowSpacing="12">
+        <Border Padding="16,12"
+                CornerRadius="14"
                 Background="{StaticResource HeroBackground}">
-            <Grid RowDefinitions="Auto,Auto,Auto" ColumnDefinitions="*,Auto" RowSpacing="18">
-                <StackPanel Orientation="Horizontal" Spacing="14">
-                    <Border Width="48" Height="48" CornerRadius="14" Background="#1E293B">
-                        <Image Width="28"
-                               Height="28"
-                               VerticalAlignment="Center"
-                               HorizontalAlignment="Center"
-                               RenderOptions.BitmapInterpolationMode="HighQuality"
-                               Source="/Assets/logo.png" />
-                    </Border>
-                    <StackPanel Spacing="4" VerticalAlignment="Center">
-                        <TextBlock FontSize="16"
-                                   FontWeight="SemiBold"
-                                   Foreground="White"
-                                   Text="CodeWF ProDataGrid 展示馆" />
-                        <TextBlock Foreground="#BFDBFE"
-                                   Text="Avalonia 12 开源 ProDataGrid 功能展示线" />
-                    </StackPanel>
-                </StackPanel>
+            <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="14">
+                <Border Width="38" Height="38" CornerRadius="10" Background="#1E293B">
+                    <Image Width="24"
+                           Height="24"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center"
+                           RenderOptions.BitmapInterpolationMode="HighQuality"
+                           Source="/Assets/logo.png" />
+                </Border>
 
-                <StackPanel Grid.Row="1" Spacing="8">
-                        <TextBlock FontSize="34"
-                               FontWeight="Bold"
+                <StackPanel Grid.Column="1" Spacing="3" VerticalAlignment="Center">
+                    <TextBlock FontSize="18"
+                               FontWeight="SemiBold"
                                Foreground="White"
-                                   Text="ProDataGrid 开源功能展示馆" />
-                    <TextBlock MaxWidth="760"
-                               FontSize="14"
-                               Foreground="#DCFCE7"
-                               Text="基于 MIT 协议的 ProDataGrid 构建，专门演示三态排序、分组表头和动态列能力，适合在 Avalonia 12 主线上继续使用开源表格方案。" />
+                               Text="ProDataGrid 功能示例" />
+                    <TextBlock Foreground="#D7E8F6"
+                               Text="演示三态排序、分组表头和动态列的用法与效果。" />
                 </StackPanel>
 
-                <StackPanel Grid.Column="1"
-                            Grid.RowSpan="2"
+                <StackPanel Grid.Column="2"
                             Orientation="Horizontal"
-                            Spacing="10"
-                            VerticalAlignment="Top">
-                    <Border Padding="12,6" Background="#064E3B55" CornerRadius="999">
-                        <TextBlock Foreground="White" FontWeight="SemiBold" Text="Avalonia 12" />
+                            Spacing="8"
+                            VerticalAlignment="Center">
+                    <Border Padding="10,5" Background="#064E3B55" CornerRadius="999">
+                        <TextBlock Foreground="White" FontWeight="SemiBold" Text="三态排序" />
                     </Border>
-                    <Border Padding="12,6" Background="#1D4ED855" CornerRadius="999">
-                        <TextBlock Foreground="White" FontWeight="SemiBold" Text="MIT 开源" />
+                    <Border Padding="10,5" Background="#1D4ED855" CornerRadius="999">
+                        <TextBlock Foreground="White" FontWeight="SemiBold" Text="分组表头" />
                     </Border>
-                    <Border Padding="12,6" Background="#7C2D1255" CornerRadius="999">
-                        <TextBlock Foreground="White" FontWeight="SemiBold" Text="高性能滚动" />
+                    <Border Padding="10,5" Background="#7C2D1255" CornerRadius="999">
+                        <TextBlock Foreground="White" FontWeight="SemiBold" Text="动态列" />
                     </Border>
                 </StackPanel>
-
-                <Grid Grid.Row="2"
-                      Grid.ColumnSpan="2"
-                      ColumnDefinitions="*,*,*"
-                      ColumnSpacing="12">
-                    <Border Padding="16" Background="#F8FBFF" CornerRadius="16">
-                        <StackPanel Spacing="6">
-                            <TextBlock FontWeight="SemiBold" Foreground="#0F172A" Text="排序行为" />
-                            <TextBlock Foreground="#64748B" Text="保留你现有的三态排序扩展，继续支持升序、降序和取消排序。" />
-                        </StackPanel>
-                    </Border>
-                    <Border Grid.Column="1" Padding="16" Background="#F8FBFF" CornerRadius="16">
-                        <StackPanel Spacing="6">
-                            <TextBlock FontWeight="SemiBold" Foreground="#0F172A" Text="复杂表头" />
-                            <TextBlock Foreground="#64748B" Text="适合工业监控、参数配置和流程看板等复杂字段场景。" />
-                        </StackPanel>
-                    </Border>
-                    <Border Grid.Column="2" Padding="16" Background="#F8FBFF" CornerRadius="16">
-                        <StackPanel Spacing="6">
-                            <TextBlock FontWeight="SemiBold" Foreground="#0F172A" Text="动态列更新" />
-                            <TextBlock Foreground="#64748B" Text="在保持滚动与切换体验的同时，支持运行时追加列和持续刷新数据。" />
-                        </StackPanel>
-                    </Border>
-                </Grid>
             </Grid>
         </Border>
 
-        <Border Grid.Row="1" Classes="Panel" Padding="14">
-            <TabControl CornerRadius="12,12,0,0"
+        <Border Grid.Row="1" Classes="Panel" Padding="10">
+            <TabControl CornerRadius="8,8,0,0"
                         TabStripPlacement="Top">
                 <TabControl.Styles>
                     <Style Selector="TabControl">

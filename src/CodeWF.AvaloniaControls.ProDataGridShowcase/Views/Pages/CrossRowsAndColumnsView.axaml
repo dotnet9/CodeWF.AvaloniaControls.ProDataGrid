@@ -57,17 +57,19 @@
         </Style>
     </UserControl.Styles>
 
-    <Grid RowDefinitions="Auto,*" RowSpacing="14">
-        <Border Padding="16"
+    <Grid RowDefinitions="Auto,*" RowSpacing="8">
+        <Border Padding="10,8"
                 Background="#F8FAFC"
                 BorderBrush="#E4E9F2"
                 BorderThickness="1"
-                CornerRadius="14">
-            <StackPanel Spacing="6">
-                <TextBlock FontSize="20" FontWeight="SemiBold" Text="跨行与分组表头" />
-                <TextBlock Foreground="#5B6472"
-                           Text="该布局模拟工业流程配置表，包含分组字段、嵌套路径信息以及更紧凑的多级处理阶段表头。" />
-            </StackPanel>
+                CornerRadius="8">
+            <Grid ColumnDefinitions="Auto,*" ColumnSpacing="14" VerticalAlignment="Center">
+                <TextBlock FontSize="16" FontWeight="SemiBold" Text="跨行与分组表头" />
+                <TextBlock Grid.Column="1"
+                           Foreground="#5B6472"
+                           Text="演示分组字段、嵌套路径和多级处理阶段表头。"
+                           TextTrimming="CharacterEllipsis" />
+            </Grid>
         </Border>
 
         <DataGrid Grid.Row="1"

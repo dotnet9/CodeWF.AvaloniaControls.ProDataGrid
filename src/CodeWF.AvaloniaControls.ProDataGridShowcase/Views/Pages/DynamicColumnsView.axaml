@@ -35,17 +35,19 @@
         </Style>
     </UserControl.Styles>
 
-    <Grid RowDefinitions="Auto,*" RowSpacing="14">
-        <Border Padding="16"
+    <Grid RowDefinitions="Auto,*" RowSpacing="8">
+        <Border Padding="10,8"
                 Background="#F8FAFC"
                 BorderBrush="#E4E9F2"
                 BorderThickness="1"
-                CornerRadius="14">
-            <StackPanel Spacing="6">
-                <TextBlock FontSize="20" FontWeight="SemiBold" Text="动态列" />
-                <TextBlock Foreground="#5B6472"
-                           Text="左侧首列保持固定，右侧指标列在运行时动态生成并持续刷新，适合控制台和监控看板场景。" />
-            </StackPanel>
+                CornerRadius="8">
+            <Grid ColumnDefinitions="Auto,*" ColumnSpacing="14" VerticalAlignment="Center">
+                <TextBlock FontSize="16" FontWeight="SemiBold" Text="动态列" />
+                <TextBlock Grid.Column="1"
+                           Foreground="#5B6472"
+                           Text="演示运行时生成指标列并持续刷新数据。"
+                           TextTrimming="CharacterEllipsis" />
+            </Grid>
         </Border>
 
         <DataGrid Grid.Row="1" x:Name="MyDataGrid" ItemsSource="{Binding DynamicGroups}">

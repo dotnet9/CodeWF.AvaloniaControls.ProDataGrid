@@ -26,76 +26,51 @@
             <Setter Property="Background" Value="White" />
             <Setter Property="BorderBrush" Value="#E4E9F2" />
             <Setter Property="BorderThickness" Value="1" />
-            <Setter Property="CornerRadius" Value="18" />
+            <Setter Property="CornerRadius" Value="12" />
         </Style>
         <Style Selector="TextBlock.Caption">
             <Setter Property="Foreground" Value="#5B6472" />
         </Style>
         <Style Selector="TabItem">
-            <Setter Property="Padding" Value="18,10" />
-            <Setter Property="MinWidth" Value="160" />
+            <Setter Property="Padding" Value="14,8" />
+            <Setter Property="MinWidth" Value="136" />
             <Setter Property="FontWeight" Value="SemiBold" />
         </Style>
     </Window.Styles>
 
-    <Grid Margin="22" RowDefinitions="Auto,*" RowSpacing="18">
+    <Grid Margin="18" RowDefinitions="Auto,*" RowSpacing="12">
         <Border Classes="Panel"
-                Padding="28"
+                Padding="16,12"
                 Background="#0F172A">
-            <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto" RowSpacing="18">
-                <StackPanel Spacing="8">
-                    <TextBlock FontSize="30"
-                               FontWeight="Bold"
+            <Grid ColumnDefinitions="*,Auto" ColumnSpacing="14">
+                <StackPanel Spacing="3" VerticalAlignment="Center">
+                    <TextBlock FontSize="18"
+                               FontWeight="SemiBold"
                                Foreground="White"
-                               Text="ProDataGrid 大数据页签切换回归示例" />
+                               Text="ProDataGrid 性能示例" />
                     <TextBlock Classes="Caption"
-                               MaxWidth="860"
                                Foreground="#CBD5E1"
-                               Text="这个样例专门围绕“表格数据量很大、Tab 页和文档页频繁切换”的真实场景构建，用来验证 Avalonia 12 主线下的开源高性能表格方案是否足够流畅。" />
+                               Text="演示大数据表格在基础交互、页签切换和文档切换中的用法与效果。" />
                 </StackPanel>
 
                 <StackPanel Grid.Column="1"
                             Orientation="Horizontal"
-                            Spacing="10"
-                            VerticalAlignment="Top">
-                    <Border Padding="12,6" Background="#1D4ED855" CornerRadius="999">
-                        <TextBlock Foreground="White" FontWeight="SemiBold" Text="Avalonia 12" />
+                            Spacing="8"
+                            VerticalAlignment="Center">
+                    <Border Padding="10,5" Background="#1D4ED855" CornerRadius="999">
+                        <TextBlock Foreground="White" FontWeight="SemiBold" Text="12,000 行" />
                     </Border>
-                    <Border Padding="12,6" Background="#0F766E55" CornerRadius="999">
-                        <TextBlock Foreground="White" FontWeight="SemiBold" Text="MIT 开源 ProDataGrid" />
+                    <Border Padding="10,5" Background="#0F766E55" CornerRadius="999">
+                        <TextBlock Foreground="White" FontWeight="SemiBold" Text="十万级页签" />
                     </Border>
-                    <Border Padding="12,6" Background="#9A341255" CornerRadius="999">
-                        <TextBlock Foreground="White" FontWeight="SemiBold" Text="大数据量切换" />
+                    <Border Padding="10,5" Background="#9A341255" CornerRadius="999">
+                        <TextBlock Foreground="White" FontWeight="SemiBold" Text="文档切换" />
                     </Border>
                 </StackPanel>
-
-                <Grid Grid.Row="1"
-                      Grid.ColumnSpan="2"
-                      ColumnDefinitions="*,*,*"
-                      ColumnSpacing="12">
-                    <Border Padding="16" Background="#F8FBFF" CornerRadius="16">
-                        <StackPanel Spacing="6">
-                            <TextBlock FontWeight="SemiBold" Text="基础交互" />
-                            <TextBlock Foreground="#64748B" Text="先用 12,000 行基础样例验证列宽、排序和滚动行为。" />
-                        </StackPanel>
-                    </Border>
-                    <Border Grid.Column="1" Padding="16" Background="#F8FBFF" CornerRadius="16">
-                        <StackPanel Spacing="6">
-                            <TextBlock FontWeight="SemiBold" Text="大页签切换" />
-                            <TextBlock Foreground="#64748B" Text="使用十万级数据量模拟多个常驻页签来回切换。" />
-                        </StackPanel>
-                    </Border>
-                    <Border Grid.Column="2" Padding="16" Background="#F8FBFF" CornerRadius="16">
-                        <StackPanel Spacing="6">
-                            <TextBlock FontWeight="SemiBold" Text="文档工作区" />
-                            <TextBlock Foreground="#64748B" Text="模拟 Dock Document 类似的多文档切换压力场景。" />
-                        </StackPanel>
-                    </Border>
-                </Grid>
             </Grid>
         </Border>
 
-        <Border Grid.Row="1" Classes="Panel" Padding="14">
+        <Border Grid.Row="1" Classes="Panel" Padding="10">
             <TabControl>
                 <TabItem Header="基础交互">
                     <views:DataGridDemo />

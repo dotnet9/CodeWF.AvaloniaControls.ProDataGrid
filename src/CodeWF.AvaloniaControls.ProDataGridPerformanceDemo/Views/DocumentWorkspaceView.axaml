@@ -7,25 +7,27 @@
              d:DesignWidth="800"
              d:DesignHeight="450"
              x:Class="CodeWF.AvaloniaControls.ProDataGridPerformanceDemo.Views.DocumentWorkspaceView">
-    <Grid RowDefinitions="Auto,*" RowSpacing="14">
-        <Border Padding="16"
+    <Grid RowDefinitions="Auto,*" RowSpacing="8">
+        <Border Padding="10,8"
                 Background="#F8FAFC"
                 BorderBrush="#E4E9F2"
                 BorderThickness="1"
-                CornerRadius="14">
-            <StackPanel Spacing="6">
-                <TextBlock FontSize="20" FontWeight="SemiBold" Text="文档工作区切换" />
-                <TextBlock Foreground="#5B6472"
-                           Text="模拟 Dock 或多文档工作区常见的“多个表格文档常驻内存、频繁切换前台”的场景，重点观察切换时是否出现明显顿挫。" />
-            </StackPanel>
+                CornerRadius="8">
+            <Grid ColumnDefinitions="Auto,*" ColumnSpacing="14" VerticalAlignment="Center">
+                <TextBlock FontSize="16" FontWeight="SemiBold" Text="文档工作区切换" />
+                <TextBlock Grid.Column="1"
+                           Foreground="#5B6472"
+                           Text="模拟多个表格文档常驻和频繁切换的效果。"
+                           TextTrimming="CharacterEllipsis" />
+            </Grid>
         </Border>
 
         <Border Grid.Row="1"
                 Background="White"
                 BorderBrush="#E4E9F2"
                 BorderThickness="1"
-                CornerRadius="14"
-                Padding="14">
+                CornerRadius="8"
+                Padding="10">
             <TabControl>
                 <TabItem Header="产线总览">
                     <views:LargeDataGridView HeaderTitle="产线总览文档"
