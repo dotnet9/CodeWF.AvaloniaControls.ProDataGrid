@@ -17,17 +17,17 @@ Install-Package CodeWF.AvaloniaControls.ProDataGrid
 ## Repository Layout
 
 - `src/CodeWF.AvaloniaControls.ProDataGrid`: reusable ProDataGrid extension library
-- `src/CodeWF.AvaloniaControls.ProDataGridShowcase`: functional ProDataGrid showcase
-- `src/CodeWF.AvaloniaControls.ProDataGridPerformanceDemo`: large-data, tab-switching, and document-switching performance sample
+- `src/CodeWF.AvaloniaControls.ProDataGrid.Themes`: minimal theme adjustments layered on Semi.Avalonia.ProDataGrid
+- `src/CodeWF.AvaloniaControls.ProDataGridDemo`: combined functional and performance samples
 - `CodeWF.AvaloniaControls.ProDataGrid.slnx`: solution view for the ProDataGrid library and samples
 
 ## Scripts
 
 - `pack.bat`: restore, build, and pack `CodeWF.AvaloniaControls.ProDataGrid` into `artifacts/packages`
-- `publish_all.bat`: publish all ProDataGrid sample applications into `publish/`
+- `publish_all.bat`: publish the ProDataGrid demo application into `publish/`
 - `publishbase.bat`: shared publish helper used by the sample publish script
 
 ## Notes
 
 - This repository intentionally depends on the open-source `ProDataGrid` package line.
-- `Prism.DryIoc.Avalonia` is pinned to `8.1.97.11073` because the `9.x` line is commercial.
+- The demo uses a single MVVM sample application with left-side tabs for each scenario.

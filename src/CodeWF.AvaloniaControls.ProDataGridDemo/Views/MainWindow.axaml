@@ -1,0 +1,100 @@
+<Window
+    x:Class="CodeWF.AvaloniaControls.ProDataGridDemo.Views.MainWindow"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:pages="clr-namespace:CodeWF.AvaloniaControls.ProDataGridDemo.Views.Pages"
+    xmlns:views="clr-namespace:CodeWF.AvaloniaControls.ProDataGridDemo.Views"
+    xmlns:vm="clr-namespace:CodeWF.AvaloniaControls.ProDataGridDemo.ViewModels"
+    x:CompileBindings="True"
+    x:DataType="vm:MainWindowViewModel"
+    Title="ProDataGrid Demo"
+    Width="1420"
+    Height="900"
+    Background="#F4F7FB"
+    FontFamily="Microsoft YaHei UI, Microsoft YaHei, Segoe UI"
+    WindowStartupLocation="CenterScreen"
+    d:DesignHeight="900"
+    d:DesignWidth="1420"
+    Icon="/Assets/logo.ico"
+    mc:Ignorable="d">
+    <Design.DataContext>
+        <vm:MainWindowViewModel />
+    </Design.DataContext>
+
+    <Window.Resources>
+        <SolidColorBrush x:Key="PanelBorderBrush">#DCE3EE</SolidColorBrush>
+    </Window.Resources>
+
+    <Window.Styles>
+        <Style Selector="Border.Panel">
+            <Setter Property="Background" Value="White" />
+            <Setter Property="BorderBrush" Value="{StaticResource PanelBorderBrush}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="8" />
+        </Style>
+        <Style Selector="TextBlock.Caption">
+            <Setter Property="Foreground" Value="#64748B" />
+        </Style>
+        <Style Selector="TabControl.DemoTabs">
+            <Setter Property="Background" Value="Transparent" />
+        </Style>
+        <Style Selector="TabControl.DemoTabs TabItem">
+            <Setter Property="Padding" Value="14,9" />
+            <Setter Property="MinWidth" Value="168" />
+            <Setter Property="MinHeight" Value="38" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+        </Style>
+    </Window.Styles>
+
+    <Grid Margin="12" RowDefinitions="Auto,*" RowSpacing="8">
+        <Border Classes="Panel" Padding="12,7">
+            <Grid ColumnDefinitions="Auto,*" ColumnSpacing="10" VerticalAlignment="Center">
+                <Image Width="22"
+                       Height="22"
+                       RenderOptions.BitmapInterpolationMode="HighQuality"
+                       Source="/Assets/logo.png" />
+                <StackPanel Grid.Column="1"
+                            Orientation="Horizontal"
+                            Spacing="10"
+                            VerticalAlignment="Center">
+                    <TextBlock FontSize="16"
+                               FontWeight="SemiBold"
+                               Text="ProDataGrid 示例" />
+                    <TextBlock Classes="Caption"
+                               VerticalAlignment="Center"
+                               Text="左侧切换功能与性能演示，右侧查看实际效果。" />
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <Border Grid.Row="1" Classes="Panel" Padding="8">
+            <TabControl Classes="DemoTabs"
+                        TabStripPlacement="Left">
+                <TabItem Header="三态排序">
+                    <pages:SortingView Margin="8" DataContext="{Binding Sorting}" />
+                </TabItem>
+                <TabItem Header="分组表头">
+                    <pages:CrossRowsAndColumnsView Margin="8" DataContext="{Binding GroupedHeaders}" />
+                </TabItem>
+                <TabItem Header="动态列">
+                    <pages:DynamicColumnsView Margin="8" DataContext="{Binding DynamicColumns}" />
+                </TabItem>
+                <TabItem Header="基础交互">
+                    <views:DataGridDemo Margin="8" DataContext="{Binding BasicPerformance}" />
+                </TabItem>
+                <TabItem Header="十万行页签">
+                    <views:LargeDataGridView Margin="8" DataContext="{Binding LargeDataGrid120}" />
+                </TabItem>
+                <TabItem Header="二十万行页签">
+                    <views:LargeDataGridView Margin="8" DataContext="{Binding LargeDataGrid180}" />
+                </TabItem>
+                <TabItem Header="文档工作区">
+                    <views:DocumentWorkspaceView Margin="8" DataContext="{Binding DocumentWorkspace}" />
+                </TabItem>
+            </TabControl>
+        </Border>
+    </Grid>
+</Window>

@@ -1,0 +1,50 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:views="using:CodeWF.AvaloniaControls.ProDataGridDemo.Views"
+             xmlns:vm="using:CodeWF.AvaloniaControls.ProDataGridDemo.ViewModels"
+             mc:Ignorable="d"
+             d:DesignWidth="800"
+             d:DesignHeight="450"
+             x:DataType="vm:DocumentWorkspaceViewModel"
+             x:CompileBindings="True"
+             x:Class="CodeWF.AvaloniaControls.ProDataGridDemo.Views.DocumentWorkspaceView">
+    <Grid RowDefinitions="Auto,*" RowSpacing="8">
+        <Border Padding="8,6"
+                Background="#F8FAFC"
+                BorderBrush="#E4E9F2"
+                BorderThickness="1"
+                CornerRadius="6">
+            <Grid ColumnDefinitions="Auto,*" ColumnSpacing="12" VerticalAlignment="Center">
+                <TextBlock FontSize="15" FontWeight="SemiBold" Text="文档工作区切换" />
+                <TextBlock Grid.Column="1"
+                           Foreground="#5B6472"
+                           Text="模拟多个表格文档常驻和频繁切换的效果。"
+                           TextTrimming="CharacterEllipsis" />
+            </Grid>
+        </Border>
+
+        <Border Grid.Row="1"
+                Background="White"
+                BorderBrush="#E4E9F2"
+                BorderThickness="1"
+                CornerRadius="6"
+                Padding="8">
+            <TabControl>
+                <TabItem Header="产线总览">
+                    <views:LargeDataGridView DataContext="{Binding ProductionOverview}" />
+                </TabItem>
+                <TabItem Header="告警追踪">
+                    <views:LargeDataGridView DataContext="{Binding AlarmTracking}" />
+                </TabItem>
+                <TabItem Header="工艺参数">
+                    <views:LargeDataGridView DataContext="{Binding ProcessParameters}" />
+                </TabItem>
+                <TabItem Header="执行日志">
+                    <views:LargeDataGridView DataContext="{Binding ExecutionLog}" />
+                </TabItem>
+            </TabControl>
+        </Border>
+    </Grid>
+</UserControl>

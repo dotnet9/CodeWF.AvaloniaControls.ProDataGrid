@@ -17,17 +17,17 @@ Install-Package CodeWF.AvaloniaControls.ProDataGrid
 ## 仓库结构
 
 - `src/CodeWF.AvaloniaControls.ProDataGrid`：可复用的 ProDataGrid 扩展类库
-- `src/CodeWF.AvaloniaControls.ProDataGridShowcase`：ProDataGrid 功能展示示例
-- `src/CodeWF.AvaloniaControls.ProDataGridPerformanceDemo`：大数据量、Tab 切换、Document 切换性能示例
+- `src/CodeWF.AvaloniaControls.ProDataGrid.Themes`：基于 Semi.Avalonia.ProDataGrid 的最小主题补丁
+- `src/CodeWF.AvaloniaControls.ProDataGridDemo`：合并后的功能与性能示例工程
 - `CodeWF.AvaloniaControls.ProDataGrid.slnx`：ProDataGrid 类库和示例的解决方案视图
 
 ## 脚本
 
 - `pack.bat`：还原、构建并打包 `CodeWF.AvaloniaControls.ProDataGrid` 到 `artifacts/packages`
-- `publish_all.bat`：发布所有 ProDataGrid 示例工程到 `publish/`
+- `publish_all.bat`：发布 ProDataGrid 示例工程到 `publish/`
 - `publishbase.bat`：示例发布脚本共用的辅助脚本
 
 ## 说明
 
 - 当前仓库明确使用开源 `ProDataGrid` 包线。
-- `Prism.DryIoc.Avalonia` 固定使用 `8.1.97.11073`，因为 `9.x` 已转为商业版。
+- 示例工程使用单一 MVVM 应用，并通过左侧页签切换每个演示场景。

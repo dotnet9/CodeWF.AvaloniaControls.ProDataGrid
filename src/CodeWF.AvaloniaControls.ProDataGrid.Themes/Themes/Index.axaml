@@ -1,0 +1,13 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Style Selector="DataGridColumnHeader /template/ Border.HeaderBackground">
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="CornerRadius" Value="0" />
+    </Style>
+    <Style Selector="DataGridColumnHeader:pointerover /template/ Border.HeaderBackground">
+        <Setter Property="Background" Value="{DynamicResource DataGridColumnHeaderPointeroverBackground}" />
+    </Style>
+    <Style Selector="DataGridColumnHeader /template/ Rectangle.VerticalSeparator">
+        <Setter Property="Opacity" Value="0.25" />
+    </Style>
+</Styles>

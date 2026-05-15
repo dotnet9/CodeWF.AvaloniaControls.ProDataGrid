@@ -1,0 +1,97 @@
+<UserControl
+    x:Class="CodeWF.AvaloniaControls.ProDataGridDemo.Views.Pages.DynamicColumnsView"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:models="clr-namespace:CodeWF.AvaloniaControls.ProDataGridDemo.Models"
+    xmlns:vm="clr-namespace:CodeWF.AvaloniaControls.ProDataGridDemo.ViewModels.Pages"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    x:CompileBindings="True"
+    x:DataType="vm:DynamicColumnsViewModel"
+    Background="White"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <SolidColorBrush x:Key="Colors.Border.BorderBrush">#F0F0F0</SolidColorBrush>
+        <SolidColorBrush x:Key="DataGridColumnHeaderForeground">#262626</SolidColorBrush>
+    </UserControl.Resources>
+    <UserControl.Styles>
+        <Style Selector="DataGridColumnHeader">
+            <Setter Property="Foreground" Value="{StaticResource DataGridColumnHeaderForeground}" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="ClipToBounds" Value="True" />
+        </Style>
+        <Style Selector="TextBlock.Header">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Margin" Value="0" />
+        </Style>
+        <Style Selector="TextBlock.Content">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Margin" Value="{DynamicResource DataGridCellTextBlockDefaultMargin}" />
+        </Style>
+    </UserControl.Styles>
+
+    <Grid RowDefinitions="Auto,*" RowSpacing="8">
+        <Border Padding="8,6"
+                Background="#F8FAFC"
+                BorderBrush="#E4E9F2"
+                BorderThickness="1"
+                CornerRadius="6">
+            <Grid ColumnDefinitions="Auto,*" ColumnSpacing="12" VerticalAlignment="Center">
+                <TextBlock FontSize="15" FontWeight="SemiBold" Text="动态列" />
+                <TextBlock Grid.Column="1"
+                           Foreground="#5B6472"
+                           Text="演示运行时生成指标列并持续刷新数据。"
+                           TextTrimming="CharacterEllipsis" />
+            </Grid>
+        </Border>
+
+        <DataGrid Grid.Row="1"
+                  x:Name="MyDataGrid"
+                  CanUserAddRows="False"
+                  CanUserResizeColumns="True"
+                  IsReadOnly="True"
+                  ItemsSource="{Binding DynamicGroups}">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Width="120" MinWidth="96" CanUserResize="True">
+                    <DataGridTemplateColumn.Header>
+                        <Grid x:Name="CornerHeaderGrid"
+                              IsHitTestVisible="False"
+                              ClipToBounds="True"
+                              HorizontalAlignment="Left"
+                              VerticalAlignment="Stretch"
+                              MinHeight="40">
+                            <Line x:Name="CornerHeaderDiagonal"
+                                  StartPoint="0,0"
+                                  EndPoint="1,1"
+                                  Stroke="#D0D8E5"
+                                  StrokeThickness="1" />
+                            <TextBlock Margin="14,0,0,4"
+                                       HorizontalAlignment="Left"
+                                       VerticalAlignment="Bottom"
+                                       FontSize="12"
+                                       Text="状态" />
+                            <TextBlock Margin="0,4,14,0"
+                                       HorizontalAlignment="Right"
+                                       VerticalAlignment="Top"
+                                       FontSize="12"
+                                       Text="参数" />
+                        </Grid>
+                    </DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate x:DataType="models:DynamicGroup">
+                            <Grid>
+                                <TextBlock Classes="Content" Text="{Binding Name}" />
+                            </Grid>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>
+

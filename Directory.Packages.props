@@ -10,7 +10,6 @@
     <PackageVersion Include="Avalonia.Desktop" Version="$(AvaloniaVersion)" />
     <PackageVersion Include="AvaloniaUI.DiagnosticsSupport" Version="2.2.1" />
     <PackageVersion Include="Avalonia.Fonts.Inter" Version="$(AvaloniaVersion)" />
-    <PackageVersion Include="Prism.DryIoc.Avalonia" Version="8.1.97.11073" />
     <PackageVersion Include="ProDataGrid" Version="12.0.0" />
     <PackageVersion Include="ReactiveUI.Avalonia" Version="$(ReactiveUIAvaloniaVersion)" />
     <PackageVersion Include="Semi.Avalonia" Version="$(SemiAvaloniaVersion)" />
