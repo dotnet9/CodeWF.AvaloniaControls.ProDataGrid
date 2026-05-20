@@ -2,6 +2,11 @@
 
 [English](CHANGELOG.md) | 简体中文
 
+## V12.0.3.3（2026-05-21）
+
+- 🔨[优化]-补齐 ProDataGrid 列头默认前景色、背景色、尺寸和分隔线资源，宿主应用无需再在页面内单独修补列头文字样式。
+- 🐛[修复]-修复宿主主题未定义 `DataGridColumnHeaderForeground` 时 DataGrid 列头文字不可见的问题。
+
 ## V12.0.3.2（2026-05-20）
 
 - 🔨[优化]-新增 `Avalonia.Themes.Fluent` 作为开源 ProDataGrid 模板基线，修复移除 `Semi.Avalonia.ProDataGrid` 后示例列头样式丢失的问题。

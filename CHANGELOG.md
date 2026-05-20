@@ -2,6 +2,11 @@
 
 [简体中文](CHANGELOG.zh-CN.md) | English
 
+## V12.0.3.3（2026-05-21）
+
+- 🔨[优化]-Added default ProDataGrid column-header foreground, background, sizing, and separator resources so host applications do not need page-local header text fixes.
+- 🐛[修复]-Fixed invisible DataGrid column-header text when host themes do not define `DataGridColumnHeaderForeground`.
+
 ## V12.0.3.2（2026-05-20）
 
 - 🔨[优化]-Added `Avalonia.Themes.Fluent` as the open ProDataGrid template baseline so demo column headers render after removing `Semi.Avalonia.ProDataGrid`.
