@@ -2,12 +2,17 @@
 
 [English](CHANGELOG.md) | 简体中文
 
+## V12.0.3.2（2026-05-20）
+
+- 🔨[优化]-新增 `Avalonia.Themes.Fluent` 作为开源 ProDataGrid 模板基线，修复移除 `Semi.Avalonia.ProDataGrid` 后示例列头样式丢失的问题。
+- 🔨[优化]-示例继续保留开源 `Semi.Avalonia` 主体主题，同时通过 `CodeWFProDataGridTheme` 加载 ProDataGrid 所需的 Fluent DataGrid 资源和列头样式补丁。
+
 ## V12.0.3.1（2026-05-15）
 
 - 😄[新增]-新增 `CodeWF.AvaloniaControls.ProDataGridDemo`，作为功能与性能场景统一管理的合并示例工程。
 - 🔨[优化]-将示例导航调整为左侧页签，并移除占用空间较大的展示型标题区域。
 - 🔨[优化]-优化分组表头和动态列示例的视觉细节，包括分组表头横线、单元格内容间距、悬停填充、分隔线颜色以及动态斜线表头。
-- 😄[新增]-新增最小化的 `CodeWF.AvaloniaControls.ProDataGrid.Themes` 包，用于承载必须调整的 Semi.Avalonia.ProDataGrid 样式补丁。
+- 😄[新增]-新增最小化的 `CodeWF.AvaloniaControls.ProDataGrid.Themes` 包，用于承载开源 ProDataGrid 的样式补丁。
 - 🔨[优化]-从合并示例中移除价值较低的基础交互和文档工作区页签。
 - 🔨[优化]-将大数据示例合并为一个 1,000,000 行、20 列的性能表格，并使用轻量生成数据。
 - 🔨[优化]-将动态列示例限制为最多显示 20 行、总列数不超过 10 列，并使用更清晰的设备指标文案。

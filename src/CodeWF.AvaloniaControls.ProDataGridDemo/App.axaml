@@ -5,8 +5,8 @@
              xmlns:codewf="https://codewf.com"
              xmlns:local="clr-namespace:CodeWF.AvaloniaControls.ProDataGridDemo">
 	<Application.Styles>
+        <FluentTheme />
         <semi:SemiTheme Locale="zh-CN" />
-        <semi:ProDataGridSemiTheme />
         <codewf:CodeWFProDataGridTheme />
         <local:OwnerTheme />
     </Application.Styles>
