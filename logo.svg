@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" role="img" aria-labelledby="title desc">
+  <title id="title">CodeWF ProDataGrid logo</title>
+  <desc id="desc">A simple data grid icon for the CodeWF Avalonia ProDataGrid package.</desc>
+  <defs>
+    <linearGradient id="bg" x1="66" y1="70" x2="430" y2="424" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#12A6C8" />
+      <stop offset="1" stop-color="#2464D2" />
+    </linearGradient>
+    <linearGradient id="header" x1="112" y1="126" x2="388" y2="188" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0E7490" />
+      <stop offset="1" stop-color="#1D4ED8" />
+    </linearGradient>
+  </defs>
+
+  <rect x="54" y="54" width="392" height="392" rx="84" fill="url(#bg)" />
+
+  <rect x="106" y="120" width="288" height="260" rx="28" fill="#F8FBFF" />
+  <path d="M134 120h232a28 28 0 0 1 28 28v45H106v-45a28 28 0 0 1 28-28Z" fill="url(#header)" />
+
+  <path d="M106 194h288M106 255h288M106 316h288" fill="none" stroke="#C8D7E8" stroke-width="10" stroke-linecap="round" />
+  <path d="M178 120v260M250 120v260M322 120v260" fill="none" stroke="#D8E5F2" stroke-width="10" stroke-linecap="round" />
+  <path d="M178 120v73M250 120v73M322 120v73" fill="none" stroke="#EFF8FF" stroke-width="10" stroke-linecap="round" />
+
+  <rect x="132" y="223" width="41" height="32" rx="9" fill="#2EC4B6" />
+  <rect x="205" y="284" width="41" height="32" rx="9" fill="#2EC4B6" />
+  <rect x="278" y="223" width="41" height="32" rx="9" fill="#2EC4B6" />
+  <rect x="206" y="223" width="40" height="32" rx="9" fill="#E7F0FA" />
+  <rect x="132" y="284" width="41" height="32" rx="9" fill="#E7F0FA" />
+  <rect x="279" y="284" width="40" height="32" rx="9" fill="#E7F0FA" />
+
+  <circle cx="344" cy="345" r="47" fill="#10233E" />
+  <path d="M344 319v52M318 345h52" fill="none" stroke="#FFFFFF" stroke-width="18" stroke-linecap="round" />
+</svg>

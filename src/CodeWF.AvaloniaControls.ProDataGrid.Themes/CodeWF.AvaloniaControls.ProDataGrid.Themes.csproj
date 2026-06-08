@@ -11,7 +11,7 @@
 		<PackageId>CodeWF.AvaloniaControls.ProDataGrid.Themes</PackageId>
 		<AssemblyName>CodeWF.AvaloniaControls.ProDataGrid.Themes</AssemblyName>
 		<RootNamespace>CodeWF.AvaloniaControls.ProDataGrid.Themes</RootNamespace>
-		<PackageIcon>codewf.png</PackageIcon>
+		<PackageIcon>logo.png</PackageIcon>
 		<PackageTags>avalonia ui,prodatagrid,themes,codewf</PackageTags>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>

@@ -6,8 +6,6 @@
 
 这是 `CodeWF.AvaloniaControls.ProDataGrid` 的独立仓库，用于维护 Avalonia 12 下基于 MIT 协议 `ProDataGrid` 的扩展类库与示例工程。
 
-[English](README.md) | 简体中文
-
 ## 安装
 
 ```powershell
