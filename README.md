@@ -1,23 +1,23 @@
 # CodeWF.AvaloniaControls.ProDataGrid
 
-| Name | NuGet | Download |
-|------|-------|----------|
+| 名称 | NuGet | 下载量 |
+|------|-------|--------|
 | CodeWF.AvaloniaControls.ProDataGrid | [![NuGet](https://img.shields.io/nuget/v/CodeWF.AvaloniaControls.ProDataGrid.svg)](https://www.nuget.org/packages/CodeWF.AvaloniaControls.ProDataGrid/) | [![NuGet](https://img.shields.io/nuget/dt/CodeWF.AvaloniaControls.ProDataGrid.svg)](https://www.nuget.org/packages/CodeWF.AvaloniaControls.ProDataGrid/) |
 
-Avalonia 12 extensions for the MIT-licensed `ProDataGrid` package, including tri-state sorting helpers, performance presets, and runnable samples.
+这是 `CodeWF.AvaloniaControls.ProDataGrid` 的独立仓库，用于维护 Avalonia 12 下基于 MIT 协议 `ProDataGrid` 的扩展类库与示例工程。
 
-English | [简体中文](README.zh-CN.md)
+[English](README.md) | 简体中文
 
-## Install
+## 安装
 
-```shell
+```powershell
 Install-Package CodeWF.AvaloniaControls.ProDataGrid
 Install-Package CodeWF.AvaloniaControls.ProDataGrid.Themes
 ```
 
-## Theme Setup
+## 主题配置
 
-When the app uses Semi.Avalonia, keep the open `Semi.Avalonia` core theme and add the CodeWF ProDataGrid theme after `FluentTheme`:
+如果应用使用 Semi.Avalonia，可以继续保留开源 `Semi.Avalonia` 主体主题，并在 `FluentTheme` 后加入 CodeWF ProDataGrid 主题：
 
 ```xml
 <Application.Styles>
@@ -27,65 +27,65 @@ When the app uses Semi.Avalonia, keep the open `Semi.Avalonia` core theme and ad
 </Application.Styles>
 ```
 
-`CodeWFProDataGridTheme` loads the MIT `ProDataGrid` Fluent DataGrid template resources and then applies the CodeWF column-header adjustments. It does not reference `Semi.Avalonia.ProDataGrid`.
+`CodeWFProDataGridTheme` 会加载 MIT 协议的 `ProDataGrid` Fluent DataGrid 模板资源，然后叠加 CodeWF 的列头样式调整。它不引用 `Semi.Avalonia.ProDataGrid`。
 
-## Repository Layout
+## 仓库结构
 
-- `src/CodeWF.AvaloniaControls.ProDataGrid`: reusable ProDataGrid extension library
-- `src/CodeWF.AvaloniaControls.ProDataGrid.Themes`: ProDataGrid Fluent template resources plus minimal CodeWF style adjustments
-- `src/CodeWF.AvaloniaControls.ProDataGridDemo`: combined functional and performance samples
-- `CodeWF.AvaloniaControls.ProDataGrid.slnx`: solution view for the ProDataGrid library and samples
+- `src/CodeWF.AvaloniaControls.ProDataGrid`：可复用的 ProDataGrid 扩展类库
+- `src/CodeWF.AvaloniaControls.ProDataGrid.Themes`：ProDataGrid Fluent 模板资源与 CodeWF 最小样式补丁
+- `src/CodeWF.AvaloniaControls.ProDataGridDemo`：合并后的功能与性能示例工程
+- `CodeWF.AvaloniaControls.ProDataGrid.slnx`：ProDataGrid 类库和示例的解决方案视图
 
-## Scripts
+## 脚本
 
-- `pack.bat`: restore, build, and pack `CodeWF.AvaloniaControls.ProDataGrid` into `artifacts/packages`
-- `publish_all.bat`: publish the ProDataGrid demo application into `publish/`
-- `publishbase.bat`: shared publish helper used by the sample publish script
+- `pack.bat`：还原、构建并打包 `CodeWF.AvaloniaControls.ProDataGrid` 到 `artifacts/packages`
+- `publish_all.bat`：发布 ProDataGrid 示例工程到 `publish/`
+- `publishbase.bat`：示例发布脚本共用的辅助脚本
 
-## Notes
+## 说明
 
-- This repository intentionally depends on the open-source `ProDataGrid` package line.
-- The demo keeps the open `Semi.Avalonia` core package for the app look and uses `Avalonia.Themes.Fluent` as the ProDataGrid template baseline.
-- The demo uses a single MVVM sample application with left-side tabs for each scenario.
+- 当前仓库明确使用开源 `ProDataGrid` 包线。
+- 示例工程保留开源 `Semi.Avalonia` 主体主题，同时使用 `Avalonia.Themes.Fluent` 作为 ProDataGrid 模板基线。
+- 示例工程使用单一 MVVM 应用，并通过左侧页签切换每个演示场景。
 
-## Third-Party Open Source Audit
+## 第三方开源组件审计
 
-Checked on 2026-05-20 with NuGet metadata, restored `project.assets.json`, and upstream source/license links. MIT / Apache-2.0 / BSD are preferred.
+检查时间：2026-05-20。检查范围包括 NuGet 元数据、恢复后的 `project.assets.json`、NuGet.org 信息以及上游源码/许可证链接。优先接受 MIT / Apache-2.0 / BSD。
 
-Remediation:
+本次整改：
 
-- Removed `Semi.Avalonia.ProDataGrid`; it only provides a Semi theme package and no public source repository was found.
-- The package now uses the MIT-licensed `ProDataGrid` package directly and provides `CodeWFProDataGridTheme` in the CodeWF theme package.
-- Added the MIT `Avalonia.Themes.Fluent` baseline so ProDataGrid column headers keep their template style while the demo still uses the open `Semi.Avalonia` core theme.
-- Removed `AvaloniaUI.DiagnosticsSupport` from samples because the package does not publish a clear open-source license or source repository.
+- 移除 `Semi.Avalonia.ProDataGrid`；该包只提供 Semi 主题，未找到公开源码仓库。
+- 新增 `CodeWF.AvaloniaControls.ProDataGrid.Themes`，在本仓库中维护可审计的 ProDataGrid 主题资源。
+- 新增 MIT 协议的 `Avalonia.Themes.Fluent` 基线，使 ProDataGrid 列头保留模板样式，同时示例仍使用开源 `Semi.Avalonia` 主体主题。
+- 示例工程移除 `AvaloniaUI.DiagnosticsSupport`，因为该包未公开明确的开源许可证和源码仓库。
 
-| Package | License | Source | Status |
+| 包 | 协议 | 源码/项目地址 | 结论 |
 | --- | --- | --- | --- |
-| `Avalonia` / `Avalonia.Desktop` / `Avalonia.Fonts.Inter` / `Avalonia.Themes.Fluent` | MIT | https://github.com/AvaloniaUI/Avalonia | Approved |
-| `CodeWF.AvaloniaControls.ProDataGrid.Themes` | MIT | https://github.com/dotnet9/CodeWF.AvaloniaControls.ProDataGrid | In-house open package |
-| `ProDataGrid` | MIT | https://github.com/wieslawsoltes/ProDataGrid | Approved |
-| `ReactiveUI.Avalonia` | MIT | https://github.com/reactiveui/reactiveui | Approved |
-| `Semi.Avalonia` | MIT | https://github.com/irihitech/Semi.Avalonia | Approved, only the open core package is used by the demo |
-| `System.Drawing.Common` | MIT | https://github.com/dotnet/dotnet | Approved, pinned to `10.0.8` |
-| `VC-LTL` | EPL-2.0 | https://github.com/Chuyu-Team/VC-LTL5 | Source-open; approved under the source-traceable non-preferred license rule |
-| `YY-Thunks` | MIT | https://github.com/Chuyu-Team/YY-Thunks | Approved |
+| `Avalonia` / `Avalonia.Desktop` / `Avalonia.Fonts.Inter` / `Avalonia.Themes.Fluent` | MIT | https://github.com/AvaloniaUI/Avalonia | 通过 |
+| `CodeWF.AvaloniaControls.ProDataGrid.Themes` | MIT | https://github.com/dotnet9/CodeWF.AvaloniaControls.ProDataGrid | 自研开源包 |
+| `ProDataGrid` | MIT | https://github.com/wieslawsoltes/ProDataGrid | 通过 |
+| `ReactiveUI.Avalonia` | MIT | https://github.com/reactiveui/reactiveui | 通过 |
+| `Semi.Avalonia` | MIT | https://github.com/irihitech/Semi.Avalonia | 通过，仅使用开源主体包 |
+| `System.Drawing.Common` | MIT | https://github.com/dotnet/dotnet | 通过，固定到 `10.0.8` |
+| `VC-LTL` | EPL-2.0 | https://github.com/Chuyu-Team/VC-LTL5 | 源码开放，按“源码可追溯的非优先协议”通过 |
+| `YY-Thunks` | MIT | https://github.com/Chuyu-Team/YY-Thunks | 通过 |
 
-Transitive dependency groups checked from the restored assets:
+从恢复资产穿透检查的传递依赖分组：
 
-| Package group | License | Source | Status |
+| 包分组 | 协议 | 源码/项目地址 | 结论 |
 | --- | --- | --- | --- |
-| `Avalonia.*` except the ANGLE native package | MIT | https://github.com/AvaloniaUI/Avalonia | Approved |
-| `Avalonia.Angle.Windows.Natives` | BSD-style license file | https://github.com/AvaloniaUI/angle | Approved |
-| `Avalonia.BuildServices` | MIT | https://github.com/AvaloniaUI/Avalonia.BuildServices | Approved |
-| `DynamicData` | MIT | https://github.com/reactiveui/DynamicData | Approved |
-| `HarfBuzzSharp*` / `SkiaSharp*` | MIT | https://github.com/mono/SkiaSharp | Approved |
-| `Irihi.Avalonia.Shared` | MIT | https://github.com/irihitech/Irihi.Avalonia.Shared | Approved |
-| `MicroCom.Runtime` | MIT | https://github.com/kekekeks/MicroCom | Approved |
-| `Microsoft.NET.ILLink.Tasks` / `Microsoft.Win32.SystemEvents` | MIT | https://github.com/dotnet/dotnet | Approved |
-| `ProDataGrid.FormulaEngine*` | MIT | https://github.com/wieslawsoltes/ProDataGrid | Approved |
-| `ReactiveUI` | MIT | https://github.com/reactiveui/reactiveui | Approved |
-| `Splat*` | MIT | https://github.com/reactiveui/splat | Approved |
-| `System.Reactive` | MIT | https://github.com/dotnet/reactive | Approved |
-| `Tmds.DBus.Protocol` | MIT | https://github.com/tmds/Tmds.DBus | Approved |
+| `Avalonia.*`（不含 ANGLE 原生包） | MIT | https://github.com/AvaloniaUI/Avalonia | 通过 |
+| `Avalonia.Angle.Windows.Natives` | BSD 风格许可证文件 | https://github.com/AvaloniaUI/angle | 通过 |
+| `Avalonia.BuildServices` | MIT | https://github.com/AvaloniaUI/Avalonia.BuildServices | 通过 |
+| `DynamicData` | MIT | https://github.com/reactiveui/DynamicData | 通过 |
+| `HarfBuzzSharp*` / `SkiaSharp*` | MIT | https://github.com/mono/SkiaSharp | 通过 |
+| `Irihi.Avalonia.Shared` | MIT | https://github.com/irihitech/Irihi.Avalonia.Shared | 通过 |
+| `MicroCom.Runtime` | MIT | https://github.com/kekekeks/MicroCom | 通过 |
+| `Microsoft.NET.ILLink.Tasks` / `Microsoft.Win32.SystemEvents` | MIT | https://github.com/dotnet/dotnet | 通过 |
+| `ProDataGrid.FormulaEngine*` | MIT | https://github.com/wieslawsoltes/ProDataGrid | 通过 |
+| `ReactiveUI` | MIT | https://github.com/reactiveui/reactiveui | 通过 |
+| `Splat*` | MIT | https://github.com/reactiveui/splat | 通过 |
+| `System.Reactive` | MIT | https://github.com/dotnet/reactive | 通过 |
+| `Tmds.DBus.Protocol` | MIT | https://github.com/tmds/Tmds.DBus | 通过 |
 
-Active restore assets no longer contain `Semi.Avalonia.ProDataGrid`.
+有效恢复资产中不再包含 `Semi.Avalonia.ProDataGrid`。

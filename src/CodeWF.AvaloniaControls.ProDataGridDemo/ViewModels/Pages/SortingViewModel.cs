@@ -1,5 +1,5 @@
-using CodeWF.AvaloniaControls;
 using Avalonia.Controls;
+using CodeWF.AvaloniaControls.ProDataGrid;
 using CodeWF.AvaloniaControls.ProDataGridDemo.Models;
 using ReactiveUI;
 using System.Collections.ObjectModel;

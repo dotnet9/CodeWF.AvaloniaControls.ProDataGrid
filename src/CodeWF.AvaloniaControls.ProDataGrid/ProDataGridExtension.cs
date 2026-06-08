@@ -13,7 +13,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 
-namespace CodeWF.AvaloniaControls;
+namespace CodeWF.AvaloniaControls.ProDataGrid;
 
 public static class ProDataGridExtension
 {

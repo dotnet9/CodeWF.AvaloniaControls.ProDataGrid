@@ -1,6 +1,6 @@
 using Avalonia.Controls;
 using Avalonia.Data;
-using CodeWF.AvaloniaControls;
+using CodeWF.AvaloniaControls.ProDataGrid;
 using CodeWF.AvaloniaControls.ProDataGridDemo.Models;
 using System.Diagnostics.CodeAnalysis;
 

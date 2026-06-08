@@ -7,7 +7,7 @@
 	<Application.Styles>
         <FluentTheme />
         <semi:SemiTheme Locale="zh-CN" />
-        <codewf:CodeWFProDataGridTheme />
+        <codewf:DataGridSemiTheme />
         <local:OwnerTheme />
     </Application.Styles>
 </Application>

@@ -1,32 +1,32 @@
-# Changelog
+# 更新日志
 
-[简体中文](CHANGELOG.zh-CN.md) | English
+[English](CHANGELOG.md) | 简体中文
 
 ## V12.0.3.3（2026-05-21）
 
-- 🔨[优化]-Added default ProDataGrid column-header foreground, background, sizing, and separator resources so host applications do not need page-local header text fixes.
-- 🐛[修复]-Fixed invisible DataGrid column-header text when host themes do not define `DataGridColumnHeaderForeground`.
+- 🔨[优化]-补齐 ProDataGrid 列头默认前景色、背景色、尺寸和分隔线资源，宿主应用无需再在页面内单独修补列头文字样式。
+- 🐛[修复]-修复宿主主题未定义 `DataGridColumnHeaderForeground` 时 DataGrid 列头文字不可见的问题。
 
 ## V12.0.3.2（2026-05-20）
 
-- 🔨[优化]-Added `Avalonia.Themes.Fluent` as the open ProDataGrid template baseline so demo column headers render after removing `Semi.Avalonia.ProDataGrid`.
-- 🔨[优化]-Kept the demo on the open `Semi.Avalonia` core theme while loading `CodeWFProDataGridTheme` for ProDataGrid-specific Fluent DataGrid resources and column-header adjustments.
+- 🔨[优化]-新增 `Avalonia.Themes.Fluent` 作为开源 ProDataGrid 模板基线，修复移除 `Semi.Avalonia.ProDataGrid` 后示例列头样式丢失的问题。
+- 🔨[优化]-示例继续保留开源 `Semi.Avalonia` 主体主题，同时通过 `CodeWFProDataGridTheme` 加载 ProDataGrid 所需的 Fluent DataGrid 资源和列头样式补丁。
 
 ## V12.0.3.1（2026-05-15）
 
-- 😄[新增]-Added `CodeWF.AvaloniaControls.ProDataGridDemo` as the single combined demo for functional and performance scenarios.
-- 🔨[优化]-Moved the demo navigation to left-side tabs and removed the large showcase headers.
-- 🔨[优化]-Tightened grouped-header and dynamic-column demo visuals, including grouped header lines, cell content spacing, hover fill, separator tone, and the dynamic diagonal header.
-- 😄[新增]-Added a minimal `CodeWF.AvaloniaControls.ProDataGrid.Themes` package for open-source ProDataGrid style adjustments.
-- 🔨[优化]-Removed the low-value basic interaction and document workspace demo tabs from the combined demo.
-- 🔨[优化]-Consolidated the large data scenarios into a single 1,000,000-row by 20-column performance table with lightweight generated rows.
-- 🔨[优化]-Limited the dynamic-column demo to 20 visible rows and no more than 10 total columns, with clearer device metric labels.
-- 🔨[优化]-Refined grouped-header captions, sample data, and horizontal header lines so they align with the active column width.
-- 😄[新增]-Added a demo-wide scrollbar expansion toggle and padded generated/grouped column headers for better readability.
-- 🔨[优化]-Made the scrollbar expansion toggle apply directly to live scroll viewers, removed redundant per-page demo title strips, and widened grouped-header captions to avoid clipping near resize grips.
-- 🔨[优化]-Trimmed package dependencies so the core and theme libraries depend on `ProDataGrid` directly without forcing Semi.Avalonia packages.
+- 😄[新增]-新增 `CodeWF.AvaloniaControls.ProDataGridDemo`，作为功能与性能场景统一管理的合并示例工程。
+- 🔨[优化]-将示例导航调整为左侧页签，并移除占用空间较大的展示型标题区域。
+- 🔨[优化]-优化分组表头和动态列示例的视觉细节，包括分组表头横线、单元格内容间距、悬停填充、分隔线颜色以及动态斜线表头。
+- 😄[新增]-新增最小化的 `CodeWF.AvaloniaControls.ProDataGrid.Themes` 包，用于承载开源 ProDataGrid 的样式补丁。
+- 🔨[优化]-从合并示例中移除价值较低的基础交互和文档工作区页签。
+- 🔨[优化]-将大数据示例合并为一个 1,000,000 行、20 列的性能表格，并使用轻量生成数据。
+- 🔨[优化]-将动态列示例限制为最多显示 20 行、总列数不超过 10 列，并使用更清晰的设备指标文案。
+- 🔨[优化]-优化分组表头文案、示例数据和水平表头线，使其随当前列宽对齐。
+- 😄[新增]-新增示例全局滚动条不收缩开关，并为动态生成列头与分组列头增加内边距，提升可读性。
+- 🔨[优化]-调整滚动条不收缩开关，使其直接应用到当前可视树中的滚动控件；移除每个示例页冗余的小标题区域，并加宽分组表头标题，避免靠近拖拽区域时文字被截断。
+- 🔨[优化]-收缩包依赖关系，核心库和主题库改为直接依赖 `ProDataGrid`，不再强制引入 Semi.Avalonia 相关包。
 
 ## V12.0.2.1（2026-05-08）
 
-- 😄[新增]-Migrated `CodeWF.AvaloniaControls.ProDataGrid` and its ProDataGrid sample applications into this standalone repository.
-- 😄[新增]-Added ProDataGrid-only solution, central package versions, packing script, and sample publish script.
+- 😄[新增]-将 `CodeWF.AvaloniaControls.ProDataGrid` 及其 ProDataGrid 示例应用迁移到当前独立仓库。
+- 😄[新增]-新增 ProDataGrid 专用解决方案、中央包版本管理、打包脚本和示例发布脚本。
