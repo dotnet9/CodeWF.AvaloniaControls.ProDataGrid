@@ -1,40 +1,40 @@
 <Project Sdk="Microsoft.NET.Sdk">
-	<PropertyGroup>
-		<OutputType>WinExe</OutputType>
-		<TargetFrameworks>net11.0;net11.0-windows</TargetFrameworks>
-		<LangVersion>preview</LangVersion>
-		<Nullable>enable</Nullable>
-		<NoWarn>$(NoWarn);AVLN5001</NoWarn>
-		<BuiltInComInteropSupport>true</BuiltInComInteropSupport>
-		<ApplicationManifest>app.manifest</ApplicationManifest>
-		<AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
-		<ApplicationIcon>..\..\logo.ico</ApplicationIcon>
-		<Platforms>AnyCPU;x64;x86</Platforms>
-	</PropertyGroup>
-	<PropertyGroup Condition="$([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'net11.0-windows'))">
-		<IsTrimmable>true</IsTrimmable>
-		<PublishTrimmed>true</PublishTrimmed>
-	</PropertyGroup>
-	<ItemGroup>
-		<PackageReference Include="Avalonia" />
-		<PackageReference Include="Avalonia.Desktop" />
-		<PackageReference Include="Avalonia.Fonts.Inter" />
-		<PackageReference Include="Avalonia.Themes.Fluent" />
-		<PackageReference Include="ReactiveUI.Avalonia" />
-		<PackageReference Include="Semi.Avalonia" />
-		<PackageReference Include="System.Drawing.Common" />
-		<PackageReference Include="YY-Thunks" />
-		<PackageReference Include="VC-LTL" />
-	</ItemGroup>
-	<ItemGroup>
-		<ProjectReference Include="..\CodeWF.AvaloniaControls.ProDataGrid\CodeWF.AvaloniaControls.ProDataGrid.csproj" />
-		<ProjectReference Include="..\CodeWF.AvaloniaControls.ProDataGrid.Themes\CodeWF.AvaloniaControls.ProDataGrid.Themes.csproj" />
-	</ItemGroup>
-	<ItemGroup>
-		<AvaloniaResource Include="Assets\**" />
-		<AvaloniaResource Include="..\..\logo.ico" Link="Assets\logo.ico" />
-	</ItemGroup>
-	<ItemGroup>
-		<Content Include="..\..\logo.ico" Link="Assets\logo.ico" />
-	</ItemGroup>
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFrameworks>net11.0;net11.0-windows</TargetFrameworks>
+    <LangVersion>preview</LangVersion>
+    <Nullable>enable</Nullable>
+    <NoWarn>$(NoWarn);AVLN5001</NoWarn>
+    <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+    <ApplicationIcon>..\..\logo.ico</ApplicationIcon>
+    <Platforms>AnyCPU;x64;x86</Platforms>
+  </PropertyGroup>
+  <PropertyGroup Condition="$([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'net11.0-windows'))">
+    <IsTrimmable>true</IsTrimmable>
+    <PublishTrimmed>true</PublishTrimmed>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Avalonia" />
+    <PackageReference Include="Avalonia.Desktop" />
+    <PackageReference Include="Avalonia.Fonts.Inter" />
+    <PackageReference Include="Avalonia.Themes.Fluent" />
+    <PackageReference Include="ReactiveUI.Avalonia" />
+    <PackageReference Include="Semi.Avalonia" />
+    <PackageReference Include="System.Drawing.Common" />
+    <PackageReference Include="YY-Thunks" />
+    <PackageReference Include="VC-LTL" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CodeWF.AvaloniaControls.ProDataGrid\CodeWF.AvaloniaControls.ProDataGrid.csproj" />
+    <ProjectReference Include="..\CodeWF.AvaloniaControls.ProDataGrid.Themes\CodeWF.AvaloniaControls.ProDataGrid.Themes.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <AvaloniaResource Include="Assets\**" />
+    <AvaloniaResource Include="..\..\logo.ico" Link="Assets\logo.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\..\logo.ico" Link="Assets\logo.ico" />
+  </ItemGroup>
 </Project>
