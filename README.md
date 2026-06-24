@@ -94,3 +94,6 @@ Install-Package CodeWF.AvaloniaControls.ProDataGrid.Themes
 | `Tmds.DBus.Protocol` | MIT | https://github.com/tmds/Tmds.DBus | 通过 |
 
 有效恢复资产中不再包含 `Semi.Avalonia.ProDataGrid`。
+## Package Versioning Convention
+
+Keep NuGet package versions and Central Package Management settings in `Directory.Packages.props`, including shared version properties such as `AvaloniaVersion`. Keep `Directory.Build.props` focused on build, compiler, and NuGet package metadata. When referenced, `VC-LTL` and `YY-Thunks` should use their latest prerelease versions for OS platform compatibility.
