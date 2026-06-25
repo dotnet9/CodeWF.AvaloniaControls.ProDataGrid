@@ -28,6 +28,9 @@
     <Style Selector="DataGridColumnHeader /template/ ContentPresenter">
         <Setter Property="TextElement.Foreground" Value="{DynamicResource DataGridColumnHeaderForeground}" />
     </Style>
+    <Style Selector="DataGridColumnHeader /template/ ContentPresenter#PART_ContentPresenter">
+        <Setter Property="Grid.ColumnSpan" Value="2" />
+    </Style>
     <Style Selector="DataGridColumnHeader /template/ TextBlock">
         <Setter Property="Foreground" Value="{DynamicResource DataGridColumnHeaderForeground}" />
     </Style>
