@@ -1,6 +1,7 @@
 using Avalonia;
 using Avalonia.Collections;
 using Avalonia.Controls;
+using Avalonia.Data;
 using Avalonia.Input;
 using Avalonia.Media;
 using Avalonia.Reactive;
@@ -9,6 +10,7 @@ using Avalonia.VisualTree;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
@@ -26,6 +28,7 @@ public interface IDataGridSortDirectionAwareComparer : IComparer
 public static class ProDataGridExtension
 {
     private static readonly ConditionalWeakTable<DataGrid, DataGridSortingState> SortingRegistrations = new();
+    private static readonly ConditionalWeakTable<DataGrid, DataGridDefaultEnhancementState> DefaultEnhancementRegistrations = new();
     private static readonly MethodInfo? GetSortPropertyNameMethod =
         typeof(DataGridColumn).GetMethod("GetSortPropertyName", BindingFlags.Instance | BindingFlags.NonPublic);
 
@@ -42,6 +45,32 @@ public static class ProDataGridExtension
         dataGrid.CanUserReorderColumns = false;
         dataGrid.CanUserResizeColumns = true;
         dataGrid.RowHeight = dataGrid.RowHeight <= 0 ? 36 : dataGrid.RowHeight;
+    }
+
+    public static void ApplyDefaultEnhancements(
+        this DataGrid dataGrid,
+        bool enableSorting = true,
+        bool enableSmartTooltips = true,
+        bool enableNaturalSorting = true)
+    {
+        var state = DefaultEnhancementRegistrations.GetValue(dataGrid, grid => new DataGridDefaultEnhancementState(grid));
+
+        if (enableSorting && !state.SortingApplied)
+        {
+            dataGrid.AddSorting();
+            state.SortingApplied = true;
+        }
+
+        if (enableSmartTooltips && !state.SmartTooltipsApplied)
+        {
+            dataGrid.EnableSmartTooltips();
+            state.SmartTooltipsApplied = true;
+        }
+
+        if (enableNaturalSorting)
+        {
+            state.EnableNaturalSorting();
+        }
     }
 
     /// <summary>
@@ -93,6 +122,12 @@ public static class ProDataGridExtension
 
             view.Refresh();
         };
+    }
+
+    public static void AddNaturalSorting(this DataGrid dataGrid)
+    {
+        var state = DefaultEnhancementRegistrations.GetValue(dataGrid, grid => new DataGridDefaultEnhancementState(grid));
+        state.EnableNaturalSorting();
     }
 
     private static void ApplyColumnSortDirection(DataGrid dataGrid, DataGridColumn column, ListSortDirection? direction)
@@ -184,6 +219,82 @@ public static class ProDataGridExtension
         {
             _column = null;
             _direction = null;
+        }
+    }
+
+    private sealed class DataGridDefaultEnhancementState
+    {
+        private readonly DataGrid _dataGrid;
+        private bool _naturalSortingApplied;
+
+        public DataGridDefaultEnhancementState(DataGrid dataGrid)
+        {
+            _dataGrid = dataGrid;
+        }
+
+        public bool SortingApplied { get; set; }
+
+        public bool SmartTooltipsApplied { get; set; }
+
+        public void EnableNaturalSorting()
+        {
+            if (_naturalSortingApplied)
+            {
+                ApplyNaturalSortComparers();
+                return;
+            }
+
+            _naturalSortingApplied = true;
+            if (_dataGrid.Columns is INotifyCollectionChanged columns)
+            {
+                columns.CollectionChanged += OnColumnsChanged;
+            }
+
+            ApplyNaturalSortComparers();
+        }
+
+        private void OnColumnsChanged(object? sender, NotifyCollectionChangedEventArgs e)
+        {
+            ApplyNaturalSortComparers();
+        }
+
+        private void ApplyNaturalSortComparers()
+        {
+            foreach (var column in _dataGrid.Columns)
+            {
+                ApplyNaturalSortComparer(column);
+            }
+        }
+
+        private static void ApplyNaturalSortComparer(DataGridColumn column)
+        {
+            if (!column.CanUserSort || column.CustomSortComparer is not null)
+            {
+                return;
+            }
+
+            var sortPath = GetColumnSortPath(column);
+            if (string.IsNullOrWhiteSpace(sortPath))
+            {
+                return;
+            }
+
+            column.CustomSortComparer = new DataGridNaturalSortComparer(sortPath);
+        }
+
+        private static string? GetColumnSortPath(DataGridColumn column)
+        {
+            if (!string.IsNullOrWhiteSpace(column.SortMemberPath))
+            {
+                return column.SortMemberPath;
+            }
+
+            if (column is DataGridBoundColumn { Binding: Binding binding })
+            {
+                return binding.Path;
+            }
+
+            return GetSortPropertyName(column);
         }
     }
 

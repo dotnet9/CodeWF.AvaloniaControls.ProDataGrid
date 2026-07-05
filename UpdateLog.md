@@ -1,5 +1,10 @@
 # 更新日志
 
+## 12.0.5.5 (2026-07-05)
+
+- [新增]-新增 `ApplyDefaultEnhancements`、`AddNaturalSorting`、`DataGridNaturalSortComparer` 和 `DataGridEnhancement.UseDefaultEnhancements`。
+- [优化]-将三态排序、自然排序和智能 ToolTip 的通用组合逻辑封装进 ProDataGrid 扩展包，宿主应用只需统一启用。
+
 ## 12.0.5.4 (2026-07-05)
 
 - 🔨[优化]-将 ProDataGrid 示例首页从单一三态排序示例调整为通用示例，补充排序、智能提示、行置灰和置顶演示。
