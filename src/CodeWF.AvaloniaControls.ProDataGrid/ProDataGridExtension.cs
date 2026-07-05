@@ -7,16 +7,28 @@ using Avalonia.Reactive;
 using Avalonia.Threading;
 using Avalonia.VisualTree;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
+using System.Reflection;
+using System.Runtime.CompilerServices;
 
 namespace CodeWF.AvaloniaControls.ProDataGrid;
 
+public interface IDataGridSortDirectionAwareComparer : IComparer
+{
+    ListSortDirection SortDirection { get; set; }
+}
+
 public static class ProDataGridExtension
 {
+    private static readonly ConditionalWeakTable<DataGrid, DataGridSortingState> SortingRegistrations = new();
+    private static readonly MethodInfo? GetSortPropertyNameMethod =
+        typeof(DataGridColumn).GetMethod("GetSortPropertyName", BindingFlags.Instance | BindingFlags.NonPublic);
+
     /// <summary>
     /// 为 ProDataGrid 启用大数据量场景下更稳妥的默认参数。
     /// </summary>
@@ -38,29 +50,141 @@ public static class ProDataGridExtension
     [UnconditionalSuppressMessage("Trimming", "IL2026", Justification = "Tri-state sorting relies on DataGridCollectionView reflection behavior provided by ProDataGrid.")]
     public static void AddSorting(this DataGrid dataGrid)
     {
-        dataGrid.Sorting += (_, e) =>
+        if (SortingRegistrations.TryGetValue(dataGrid, out _))
         {
-            if (dataGrid.ItemsSource is null || e.Column is null)
+            return;
+        }
+
+        var state = new DataGridSortingState();
+        SortingRegistrations.Add(dataGrid, state);
+
+        dataGrid.Sorting += (s, e) =>
+        {
+            e.Handled = true;
+
+            if (s is not DataGrid grid)
             {
                 return;
             }
 
-            var view = dataGrid.ItemsSource as DataGridCollectionView ?? new DataGridCollectionView(dataGrid.ItemsSource);
-            var memberPath = e.Column.SortMemberPath;
-            var sortDescription = view.SortDescriptions.FirstOrDefault(d => d.PropertyPath == memberPath);
-
-            if (sortDescription is not null && sortDescription.Direction == ListSortDirection.Descending)
+            var view = GetOrCreateCollectionView(grid);
+            if (view is null)
             {
-                view.SortDescriptions.Clear();
-                dataGrid.ItemsSource = view;
-                view.Refresh();
-                e.Handled = true;
+                state.Clear();
                 return;
             }
 
-            dataGrid.ItemsSource = view;
+            var nextDirection = state.GetNextDirection(e.Column);
+            ApplyColumnSortDirection(grid, e.Column, nextDirection);
+            view.SortDescriptions.Clear();
+
+            if (nextDirection is not null)
+            {
+                var sortDescription = CreateSortDescription(e.Column, nextDirection.Value, view.Culture);
+                if (sortDescription is null)
+                {
+                    state.Clear();
+                }
+                else
+                {
+                    view.SortDescriptions.Add(sortDescription);
+                }
+            }
+
             view.Refresh();
         };
+    }
+
+    private static void ApplyColumnSortDirection(DataGrid dataGrid, DataGridColumn column, ListSortDirection? direction)
+    {
+        foreach (var targetColumn in dataGrid.Columns)
+        {
+            targetColumn.SortDirection = ReferenceEquals(targetColumn, column) ? direction : null;
+        }
+    }
+
+    [UnconditionalSuppressMessage("Trimming", "IL2026", Justification = "Tri-state sorting relies on DataGridCollectionView reflection behavior provided by ProDataGrid.")]
+    private static DataGridCollectionView? GetOrCreateCollectionView(DataGrid dataGrid)
+    {
+        if (dataGrid.ItemsSource is DataGridCollectionView view)
+        {
+            return view;
+        }
+
+        if (dataGrid.ItemsSource is not IEnumerable source)
+        {
+            return null;
+        }
+
+        view = new DataGridCollectionView(source);
+        dataGrid.ItemsSource = view;
+        return view;
+    }
+
+    [UnconditionalSuppressMessage("Trimming", "IL2026", Justification = "Path-based sorting is part of the ProDataGrid AddSorting helper contract.")]
+    private static DataGridSortDescription? CreateSortDescription(
+        DataGridColumn column,
+        ListSortDirection direction,
+        CultureInfo culture)
+    {
+        if (column.CustomSortComparer is { } comparer)
+        {
+            if (comparer is IDataGridSortDirectionAwareComparer directionAwareComparer)
+            {
+                directionAwareComparer.SortDirection = direction;
+            }
+
+            return DataGridSortDescription.FromComparer(comparer, direction);
+        }
+
+        var memberPath = GetSortPropertyName(column);
+        return string.IsNullOrWhiteSpace(memberPath)
+            ? null
+            : DataGridSortDescription.FromPath(memberPath, direction, culture);
+    }
+
+    [UnconditionalSuppressMessage("Trimming", "IL2075", Justification = "Avalonia DataGrid derives the default sort path from an internal helper.")]
+    [UnconditionalSuppressMessage("AOT", "IL3050", Justification = "Avalonia DataGrid derives the default sort path from an internal helper.")]
+    private static string? GetSortPropertyName(DataGridColumn column)
+    {
+        return GetSortPropertyNameMethod?.Invoke(column, null) as string ?? column.SortMemberPath;
+    }
+
+    private sealed class DataGridSortingState
+    {
+        private DataGridColumn? _column;
+        private ListSortDirection? _direction;
+
+        public ListSortDirection? GetNextDirection(DataGridColumn column)
+        {
+            if (!ReferenceEquals(_column, column))
+            {
+                _column = column;
+                _direction = ListSortDirection.Ascending;
+                return _direction;
+            }
+
+            _direction = _direction switch
+            {
+                null => ListSortDirection.Ascending,
+                ListSortDirection.Ascending => ListSortDirection.Descending,
+                ListSortDirection.Descending => null,
+                _ => ListSortDirection.Ascending
+            };
+
+            if (_direction is null)
+            {
+                _column = null;
+            }
+
+            return _direction;
+        }
+
+        public void Clear()
+        {
+            _column = null;
+            _direction = null;
+        }
     }
 
     /// <summary>

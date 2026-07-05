@@ -7,7 +7,7 @@ public class MainWindowViewModel : ViewModelBase
 {
     private bool _keepScrollBarsExpanded = true;
 
-    public SortingViewModel Sorting { get; } = new();
+    public CommonDataGridViewModel Common { get; } = new();
 
     public CrossRowsAndColumnsViewModel GroupedHeaders { get; } = new();
 

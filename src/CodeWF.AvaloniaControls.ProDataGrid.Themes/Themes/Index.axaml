@@ -6,7 +6,7 @@
         <SolidColorBrush x:Key="DataGridColumnHeaderPointeroverBackground">#F3F7FC</SolidColorBrush>
         <SolidColorBrush x:Key="DataGridColumnHeaderPressedBackground">#E8F3FF</SolidColorBrush>
         <SolidColorBrush x:Key="DataGridColumnHeaderSeparatorBrush">#D9E3EF</SolidColorBrush>
-        <Thickness x:Key="DataGridColumnHeaderPadding">10,0,8,0</Thickness>
+        <Thickness x:Key="DataGridColumnHeaderPadding">10,0,0,0</Thickness>
         <x:Double x:Key="DataGridColumnHeaderMinHeight">28</x:Double>
     </Styles.Resources>
 
@@ -27,9 +27,6 @@
     </Style>
     <Style Selector="DataGridColumnHeader /template/ ContentPresenter">
         <Setter Property="TextElement.Foreground" Value="{DynamicResource DataGridColumnHeaderForeground}" />
-    </Style>
-    <Style Selector="DataGridColumnHeader /template/ ContentPresenter#PART_ContentPresenter">
-        <Setter Property="Grid.ColumnSpan" Value="2" />
     </Style>
     <Style Selector="DataGridColumnHeader /template/ TextBlock">
         <Setter Property="Foreground" Value="{DynamicResource DataGridColumnHeaderForeground}" />

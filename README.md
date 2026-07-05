@@ -8,7 +8,7 @@
 
 ## 仓库规范
 
-- 当前版本：`12.0.4.3`，版本号统一维护在根目录 `Directory.Build.props` 的 `<Version>` 节点。
+- 当前版本：`12.0.5.4`，版本号统一维护在根目录 `Directory.Build.props` 的 `<Version>` 节点。
 - NuGet 包项目统一支持 `net8.0;net10.0`；Demo、App、测试与内部应用项目统一使用 `net11.0` / `net11.0-windows`。
 - 根目录 `logo.svg`、`logo.png`、`logo.ico` 是唯一图标源，子工程只通过 MSBuild `Link` 引用，不维护图标副本。
 - 运行时帮助、Markdown 示例、内置备忘录、设计说明等业务文档按功能保留；仓库级入口文档使用根目录 `README.md` 和 `UpdateLog.md`。
@@ -71,7 +71,7 @@ Install-Package CodeWF.AvaloniaControls.ProDataGrid.Themes
 | `ProDataGrid` | MIT | https://github.com/wieslawsoltes/ProDataGrid | 通过 |
 | `ReactiveUI.Avalonia` | MIT | https://github.com/reactiveui/reactiveui | 通过 |
 | `Semi.Avalonia` | MIT | https://github.com/irihitech/Semi.Avalonia | 通过，仅使用开源主体包 |
-| `System.Drawing.Common` | MIT | https://github.com/dotnet/dotnet | 通过，固定到 `10.0.8` |
+| `System.Drawing.Common` | MIT | https://github.com/dotnet/dotnet | 通过，固定到 `10.0.9` |
 | `VC-LTL` | EPL-2.0 | https://github.com/Chuyu-Team/VC-LTL5 | 源码开放，按“源码可追溯的非优先协议”通过 |
 | `YY-Thunks` | MIT | https://github.com/Chuyu-Team/YY-Thunks | 通过 |
 
@@ -96,4 +96,4 @@ Install-Package CodeWF.AvaloniaControls.ProDataGrid.Themes
 有效恢复资产中不再包含 `Semi.Avalonia.ProDataGrid`。
 ## 包版本维护约定
 
-XML 文件统一使用两个空格缩进。`Directory.Packages.props` 统一承载 NuGet 中央包管理开关和包版本变量，包括 `AvaloniaVersion` 等共享版本属性；`Directory.Build.props` 仅保留项目构建、编译选项和 NuGet 元数据。仓库如引用 `VC-LTL`、`YY-Thunks`，这两个兼容旧版操作系统的特殊包必须使用最新预览版。
+XML 文件统一使用两个空格缩进。`Directory.Packages.props` 统一承载 NuGet 中央包管理开关和包版本变量，包括 `AvaloniaVersion` 等共享版本属性；`Directory.Build.props` 仅保留项目构建、编译选项和 NuGet 元数据。仓库如引用 `VC-LTL`、`YY-Thunks`，这两个兼容旧版操作系统的特殊包应优先使用最新稳定版；如稳定版暂未覆盖目标场景，再使用最新预览版。

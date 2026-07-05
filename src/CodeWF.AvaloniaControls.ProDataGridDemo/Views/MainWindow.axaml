@@ -9,7 +9,7 @@
     xmlns:vm="clr-namespace:CodeWF.AvaloniaControls.ProDataGridDemo.ViewModels"
     x:CompileBindings="True"
     x:DataType="vm:MainWindowViewModel"
-    Title="ProDataGrid 示例 - 三态排序、分组表头、动态列、百万行性能"
+    Title="ProDataGrid 示例 - 通用示例、分组表头、动态列、百万行性能"
     Width="1420"
     Height="900"
     Background="#F4F7FB"
@@ -75,8 +75,8 @@
                 <TabControl Grid.Row="1"
                             Classes="DemoTabs"
                             TabStripPlacement="Left">
-                    <TabItem Header="三态排序">
-                        <pages:SortingView Margin="8" DataContext="{Binding Sorting}" />
+                    <TabItem Header="{Binding Common.Header}">
+                        <pages:CommonDataGridView Margin="8" DataContext="{Binding Common}" />
                     </TabItem>
                     <TabItem Header="分组表头">
                         <pages:CrossRowsAndColumnsView Margin="8" DataContext="{Binding GroupedHeaders}" />
