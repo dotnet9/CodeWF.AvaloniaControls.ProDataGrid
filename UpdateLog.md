@@ -1,5 +1,10 @@
 # 更新日志
 
+## 12.1.0.2 (2026-07-22)
+
+- 🐛[修复]-智能 ToolTip 文本前景色绑定当前 ToolTip 主题，不再受宿主全局 TextBlock 前景色影响。
+- 🔨[优化]-按单元格按需缓存 ToolTip 文本控件，主题切换可实时生效且不增加持续分配。
+
 ## 12.0.5.5 (2026-07-05)
 
 - [新增]-新增 `ApplyDefaultEnhancements`、`AddNaturalSorting`、`DataGridNaturalSortComparer` 和 `DataGridEnhancement.UseDefaultEnhancements`。
