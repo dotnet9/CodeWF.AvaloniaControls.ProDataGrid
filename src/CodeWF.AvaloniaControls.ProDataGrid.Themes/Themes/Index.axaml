@@ -8,6 +8,9 @@
         <SolidColorBrush x:Key="DataGridColumnHeaderSeparatorBrush">#D9E3EF</SolidColorBrush>
         <Thickness x:Key="DataGridColumnHeaderPadding">10,0,0,0</Thickness>
         <x:Double x:Key="DataGridColumnHeaderMinHeight">28</x:Double>
+        <SolidColorBrush x:Key="DataGridRowBorderBrush">#F0F0F0</SolidColorBrush>
+        <SolidColorBrush x:Key="DataGridRowSelectedBorderBrush">#D9E3EF</SolidColorBrush>
+        <Thickness x:Key="DataGridRowBorderThickness">0,0,0,1</Thickness>
     </Styles.Resources>
 
     <Style Selector="DataGridColumnHeader">
@@ -45,5 +48,12 @@
     <Style Selector="DataGridColumnHeader /template/ Rectangle.VerticalSeparator">
         <Setter Property="Fill" Value="{DynamicResource DataGridColumnHeaderSeparatorBrush}" />
         <Setter Property="Opacity" Value="0.25" />
+    </Style>
+    <Style Selector="DataGridRow">
+        <Setter Property="BorderBrush" Value="{DynamicResource DataGridRowBorderBrush}" />
+        <Setter Property="BorderThickness" Value="{DynamicResource DataGridRowBorderThickness}" />
+    </Style>
+    <Style Selector="DataGridRow:selected">
+        <Setter Property="BorderBrush" Value="{DynamicResource DataGridRowSelectedBorderBrush}" />
     </Style>
 </Styles>
