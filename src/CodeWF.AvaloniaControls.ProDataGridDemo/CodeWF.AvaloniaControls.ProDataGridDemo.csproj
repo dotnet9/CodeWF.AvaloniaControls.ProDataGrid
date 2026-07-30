@@ -23,6 +23,7 @@
     <PackageReference Include="ReactiveUI.Avalonia" />
     <PackageReference Include="Semi.Avalonia" />
     <PackageReference Include="System.Drawing.Common" />
+    <PackageReference Include="System.Reactive" />
     <PackageReference Include="YY-Thunks" />
     <PackageReference Include="VC-LTL" />
   </ItemGroup>
