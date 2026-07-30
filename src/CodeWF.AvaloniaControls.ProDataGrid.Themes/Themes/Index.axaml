@@ -10,6 +10,8 @@
         <x:Double x:Key="DataGridColumnHeaderMinHeight">28</x:Double>
         <SolidColorBrush x:Key="DataGridRowBorderBrush">#F0F0F0</SolidColorBrush>
         <SolidColorBrush x:Key="DataGridRowSelectedBorderBrush">#D9E3EF</SolidColorBrush>
+        <SolidColorBrush x:Key="DataGridRowPointerOverBackground">#FAFAFA</SolidColorBrush>
+        <SolidColorBrush x:Key="DataGridRowSelectedBackground">#D6E4FF</SolidColorBrush>
         <Thickness x:Key="DataGridRowBorderThickness">0,0,0,1</Thickness>
     </Styles.Resources>
 
@@ -53,7 +55,13 @@
         <Setter Property="BorderBrush" Value="{DynamicResource DataGridRowBorderBrush}" />
         <Setter Property="BorderThickness" Value="{DynamicResource DataGridRowBorderThickness}" />
     </Style>
+    <Style Selector="DataGridRow:pointerover /template/ Border#BackgroundBorder">
+        <Setter Property="Background" Value="{DynamicResource DataGridRowPointerOverBackground}" />
+    </Style>
     <Style Selector="DataGridRow:selected">
         <Setter Property="BorderBrush" Value="{DynamicResource DataGridRowSelectedBorderBrush}" />
+    </Style>
+    <Style Selector="DataGridRow:selected /template/ Border#BackgroundBorder">
+        <Setter Property="Background" Value="{DynamicResource DataGridRowSelectedBackground}" />
     </Style>
 </Styles>

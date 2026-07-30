@@ -17,7 +17,7 @@ namespace CodeWF.AvaloniaControls.ProDataGridDemo.Views.Pages;
 
 public partial class CommonDataGridView : UserControl
 {
-    private static readonly IBrush HighlightBrush = SolidColorBrush.Parse("#E5E7EB");
+    private static readonly IBrush HighlightBrush = SolidColorBrush.Parse("#D9D9D9");
     private CommonDataGridViewModel? _viewModel;
 
     public CommonDataGridView()
