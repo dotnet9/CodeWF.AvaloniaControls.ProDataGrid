@@ -26,6 +26,8 @@ echo [4/4] Packing theme library...
 dotnet pack "src\CodeWF.AvaloniaControls.ProDataGrid.Themes\CodeWF.AvaloniaControls.ProDataGrid.Themes.csproj" -c %CONFIGURATION% --no-build -o "%PACKAGES_DIR%"
 if errorlevel 1 goto :error
 
+for /r "%PACKAGES_DIR%" %%F in (*.pdb) do del /q "%%F" 2>nul
+
 echo.
 echo Packages are available in:
 echo %PACKAGES_DIR%
